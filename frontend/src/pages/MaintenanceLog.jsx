@@ -1,5 +1,4 @@
-import React from "react";
-import UserNavbar from "../components/UserNavbar";
+import UserNavbar from "../components/LandingNavbar";
 
 const MaintenanceLog = () => {
   const maintenanceLogs = [

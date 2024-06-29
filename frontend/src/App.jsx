@@ -20,21 +20,13 @@ function App() {
 
     <BrowserRouter>
         <Routes>
+          <Route path="/" element={<Home/>} />
         <Route path="/home" element={<Home/>} /> 
         <Route path="/signup" element={<Signup/>} /> 
         <Route path="/signin" element={<Signin/>} />
-<<<<<<< HEAD
-       
+        <Route path="/booking" element={<Bookings/>} />
         {
           user?.role==="user" ? 
-=======
-        <Route path="/facility" element={<Facility/>} />
-        <Route path="/calender" element={<CalenderPage />} />
-        <Route path="/bookings" element={<Bookings />} />
-
-        {/* {
-          user.role=="user" ? 
->>>>>>> 7b162517b3c95e0a9396ac2b2b866fd721746d61
           <>
           <Route path="/facility" element={<Facility/>} />
           <Route path="/calender" element={<CalenderPage />} />

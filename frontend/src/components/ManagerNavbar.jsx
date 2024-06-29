@@ -1,6 +1,6 @@
 import logo from "../assets/logo.png";
 
-export default function AdminNavbar() {
+export default function MangerNavbar() {
   // let token = localStorage.getItem("token");
   // const navigate = useNavigate();
   return (
@@ -13,12 +13,10 @@ export default function AdminNavbar() {
           </a>
           {/* Navigation Links */}
           <div className="flex space-x-[1.5vw] text-white">
-            <a href="/admin-booking" className="text-[1.5vw] text-white hover:text-gray-400">
-              Booking{" "}
+            <a href="/maintenance" className="text-[1.5vw] text-white hover:text-gray-400">
+              Maintenance{" "}
             </a>
-            <a href="#" className="text-[1.5vw] text-white hover:text-gray-400">
-              Maintenance
-            </a>
+           
           </div>
           
           {/* Login/Signin */}

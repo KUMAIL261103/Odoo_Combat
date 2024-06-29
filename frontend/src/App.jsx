@@ -1,12 +1,12 @@
-import { Routes, Route, BrowserRouter } from 'react-router-dom'
-import { Home } from './pages/Home'
-import { Signup } from './pages/Signup'
-import { Signin } from './pages/Signin'
-import { Facility } from './pages/Facility'
-import { Maintenance } from './pages/Maintenance'
-import MaintenanceLog from './pages/MaintenanceLog';
-import { ChakraProvider } from '@chakra-ui/react'
-
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Home } from "./pages/Home";
+import { Signup } from "./pages/Signup";
+import { Signin } from "./pages/Signin";
+import { Facility } from "./pages/Facility";
+import { Maintenance } from "./pages/Maintenance";
+import MaintenanceLog from "./pages/MaintenanceLog";
+import { ChakraProvider } from "@chakra-ui/react";
+import CalenderPage from "./pages/Calender";
 function App() {
  
   const token = localStorage.getItem("token") || sessionStorage.getItem("token");
@@ -25,9 +25,11 @@ function App() {
           user.role=="user" ? 
           <>
           <Route path="/facility" element={<Facility/>} />
+          <Route path="/calender" element={<CalenderPage />} />
           </>
           :<>
           <Route path="/facility" element={<Signin/>}/>
+          <Route path="/calender" element={<Signin />} />
           </>
         }
        
@@ -53,8 +55,11 @@ function App() {
     
     </BrowserRouter>
     </>
+  
+         
+          
     </ChakraProvider>
-  )
+  );
 }
 
-export default App
+export default App;

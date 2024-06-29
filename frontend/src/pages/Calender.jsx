@@ -30,10 +30,10 @@ const CalendarPage = () => {
         label3="Schedule"
         label4="Contact"
       />
-      <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
-        <div className="w-full max-w-4xl bg-white rounded-lg shadow-lg p-6">
-          <h1 className="text-3xl font-bold text-center mb-6">
-            Sports Calendar
+      <div className="bg-slate-950  mt-0 h-[85vh]  ">
+        <div className="w-full mt-0 bg-slate-950  m-auto max-w-4xl  bg-white rounded-lg  flex flex-col mt-[2%] p-2">
+          <h1 className="text-3xl font-bold text-center mb-3">
+            SPORTS CALENDAR
           </h1>
           <div className="mb-6">
             <Calendar
@@ -42,17 +42,30 @@ const CalendarPage = () => {
               className="mx-auto"
             />
           </div>
-          <div className="mt-6">
-            <h2 className="text-xl font-semibold mb-2">
-              Available Sports for {date.toDateString()}:
-            </h2>
+          <div className="mt-2 flex flex-col m-auto justify-center">
+            <h3 className="text-xl font-semibold mb-2">
+              Available Sports for <br />
+              <span className="text-bg-slate-950 font-bold ">
+                {date.toDateString()}
+              </span>
+              :
+            </h3>
             {availableSports.length > 0 ? (
               <ul className="list-disc pl-6">
-                {availableSports.map((sport, index) => (
-                  <li key={index} className="text-lg">
-                    {sport}
-                  </li>
-                ))}
+                <div className="flex">
+                  <div>
+                    {availableSports.map((sport, index) => (
+                      <li key={index} className="text-lg">
+                      
+                        {sport}
+                        <button className="border my-1 mx-3 border-black px-1  hover:bg-black hover:text-white">
+                        Book Now
+                      </button>
+                      </li>
+                    ))}
+                  </div>
+                   
+                </div>
               </ul>
             ) : (
               <p className="text-lg">No sports available for this date.</p>

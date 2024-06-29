@@ -29,8 +29,8 @@ export const Signin = () => {
       const data = await response.json();
       if (data.success) {
         window.location.href = "/home";
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("user", JSON.stringify(data.user));
+        // localStorage.setItem("token", data.token);
+        // localStorage.setItem("user", JSON.stringify(data.user));
         sessionStorage.setItem("token", data.token);
         sessionStorage.setItem("user", JSON.stringify(data.user));
         if(data.user.role=="manager"){

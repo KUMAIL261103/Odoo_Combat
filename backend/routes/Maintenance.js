@@ -2,23 +2,23 @@ const express = require("express");
 const router = express.Router();
 const {auth, isAdmin,isManager,isUser} = require("../middlewares/Auth");
 const {
-    getAllBookings,
-    getBookingByUserId,
-    getBookingByFacilityId,
-    createBooking,
-    approveBooking
-}= require("../controllers/Booking");
+    getAllMaintainceLogs,
+    getAllMaintenanceLogByFacilityId,
+    getLatestMaintenanceLogByFacilityId,
+    scheduleMaintenance,
+    updateMaintenance,
+} = require("../controllers/Maintenance");
 
 
 
 router.get("/getAllMaintainceLogs",auth,isAdmin, getAllMaintainceLogs);
 
-router.get("/getBookingByUserId",auth,isUser, getBookingByUserId)
+router.get("/getAllMaintenanceLogByFacilityId",auth,isManager, getAllMaintenanceLogByFacilityId)
 
-router.get("/getBookingByFacilityId",auth,isAdmin,getBookingByFacilityId);
+router.post("/scheduleMaintenance",auth,isManager,scheduleMaintenance);
 
-router.post("/createBooking",auth,isUser, createBooking);
+router.post("/updateMaintenance",auth,isManager, updateMaintenance);
 
-router.post("/approveBooking",auth,isAdmin,approveBooking);
+
 
 module.exports = router;

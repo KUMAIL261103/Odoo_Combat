@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const maintainanceSchema = new mongoose.Schema(
+const MaintenanceSchema = new mongoose.Schema(
   {
     facilityId: {
       type: mongoose.Schema.Types.ObjectId,
@@ -9,11 +9,11 @@ const maintainanceSchema = new mongoose.Schema(
     note: {
       type: String,
     },
-    maintainanceDate: {
+    MaintenanceDate: {
       type: Date,
       required: true,
     },
-    maintainanceStatus: {
+    MaintenanceStatus: {
       type: String,
       enum: ["Done", "Pending"],
       default: "Pending",
@@ -22,4 +22,4 @@ const maintainanceSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Maintainance", maintainanceSchema);
+module.exports = mongoose.model("Maintenance", MaintenanceSchema);

@@ -27,9 +27,9 @@ const facilitySchema = new mongoose.Schema(
     isUsedDate: [{
       type: Date,
     }],
-    maintainanceId: {
+    MaintenanceId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Maintainance",
+      ref: "Maintenance",
     },
     bookingId: {
       type: mongoose.Schema.Types.ObjectId,

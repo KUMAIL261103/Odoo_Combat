@@ -12,7 +12,7 @@ app.use(express.json());
 app.use('/api/auth',authroutes);   
 app.use('/api/facilities', require('./routes/Facilities'));
 app.use('/api/bookings', require('./routes/Booking'));
-app.use('/api/maintainances', require('./routes/Maintainance'));
+app.use('/api/Maintenances', require('./routes/Maintenance'));
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });

@@ -1,11 +1,11 @@
-const Maintainance = require("../models/Maintainance");
+const Maintenance = require("../models/Maintenance");
 //getall mataincelogs
 exports.getAllMaintainceLogs = async (req, res) => {
     try {
-        const maintainance = await Maintainance.find();
+        const Maintenance = await Maintenance.find();
         res.status(200).json({
             success: true,
-            maintainance,
+            Maintenance,
         });
     } catch (error) {
         res.status(500).json({
@@ -15,19 +15,19 @@ exports.getAllMaintainceLogs = async (req, res) => {
     }
 }
 
-//get maintainance log by facilityid
-exports.getAllMaintainanceLogByFacilityId = async (req, res) => {
+//get Maintenance log by facilityid
+exports.getAllMaintenanceLogByFacilityId = async (req, res) => {
     try {
-        const maintainance = await Maintainance.find({ facilityId: req.params.facilityId });
-        if (!maintainance) {
+        const Maintenance = await Maintenance.find({ facilityId: req.params.facilityId });
+        if (!Maintenance) {
             return res.status(404).json({
                 success: false,
-                message: "Maintainance log not found",
+                message: "Maintenance log not found",
             });
         }
         res.status(200).json({
             success: true,
-            maintainance,
+            Maintenance,
         });
     }catch(error){
         res.status(500).json({
@@ -36,20 +36,20 @@ exports.getAllMaintainanceLogByFacilityId = async (req, res) => {
         });
     }
 }
-//get lattest maintainance  by facilityid
-exports.getLatestMaintainanceLogByFacilityId = async (req, res) => {
+//get lattest Maintenance  by facilityid
+exports.getLatestMaintenanceLogByFacilityId = async (req, res) => {
     try {
-        const maintainance = await Maintainance.find({ facilityId: req.params.facilityId }).sort({ createdAt: -1 }).limit(1);
+        const Maintenance = await Maintenance.find({ facilityId: req.params.facilityId }).sort({ createdAt: -1 }).limit(1);
 
-        if (!maintainance) {
+        if (!Maintenance) {
             return res.status(404).json({
                 success: false,
-                message: "Maintainance log not found",
+                message: "Maintenance log not found",
             });
         }
         res.status(200).json({
             success: true,
-            maintainance,
+            Maintenance,
         });
     }
     catch (error) {
@@ -60,14 +60,14 @@ exports.getLatestMaintainanceLogByFacilityId = async (req, res) => {
     }
 }
 
-//schedule maintainance 
-exports.scheduleMaintainance = async (req, res) => {
+//schedule Maintenance 
+exports.scheduleMaintenance = async (req, res) => {
     try {
-        const { facilityId, note, maintainanceDate } = req.body;
-        const maintainance = await Maintainance.create(req.body);
+        const { facilityId, note, MaintenanceDate } = req.body;
+        const Maintenance = await Maintenance.create(req.body);
         res.status(201).json({
             success: true,
-            maintainance,
+            Maintenance,
         });
     } catch (error) {
         res.status(500).json({
@@ -76,8 +76,8 @@ exports.scheduleMaintainance = async (req, res) => {
         });
     }
 }
-//update maintainance log
-exports.updateMaintainance = async (req, res) => {
+//update Maintenance log
+exports.updateMaintenance = async (req, res) => {
     try {
        if(!req.params.facilityId || !req.body){
             return res.status(400).json({
@@ -86,16 +86,16 @@ exports.updateMaintainance = async (req, res) => {
             });
        }
        const {isdone} =req.body;
-        const maintainance = await Maintainance.findOneAndUpdate({ facilityId: req.params.facilityId }, {maintainanceStatus:isdone}, { new: true });
-        if (!maintainance) {
+        const Maintenance = await Maintenance.findOneAndUpdate({ facilityId: req.params.facilityId }, {MaintenanceStatus:isdone}, { new: true });
+        if (!Maintenance) {
             return res.status(404).json({
                 success: false,
-                message: "Maintainance log not found",
+                message: "Maintenance log not found",
             });
         }
         res.status(200).json({
             success: true,
-            maintainance,
+            Maintenance,
         });
     } catch (error) {
         res.status(500).json({

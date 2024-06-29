@@ -12,5 +12,6 @@ export const Home = () => {
       />
       <Landing />
     </div>
+  )
 
 };

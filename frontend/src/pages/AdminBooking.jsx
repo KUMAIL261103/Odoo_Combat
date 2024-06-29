@@ -11,15 +11,15 @@ const initialBookings = [
         status: "Pending"
     }, {
         id: 2,
-        userName: "Jane Doe",
+        userName: "Harkirat",
         sportType: "Basketball",
         date: "2023-01-01",
         time: "10:00 AM",
         status: "Pending"
     }, {
         id: 3,
-        userName: "John Doe",
-        sportType: "Football",
+        userName: "Khushi",
+        sportType: "Cricket",
         date: "2023-01-01",
         time: "10:00 AM",
         status: "Pending"

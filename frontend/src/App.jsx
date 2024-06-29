@@ -12,7 +12,7 @@ import { AdminBooking } from "./pages/AdminBooking";
 function App() {
  
  // const token = localStorage.getItem("token") || sessionStorage.getItem("token");
-  const user = JSON.parse(sessionStorage.getItem("user"));
+  const user = JSON.parse(sessionStorage.getItem("user")) || undefined;
   console.log("User:", user);
 
   return (
@@ -22,24 +22,10 @@ function App() {
     <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home/>} />
-        <Route path="/home" element={<Home/>} /> 
-        <Route path="/signup" element={<Signup/>} /> 
-        <Route path="/signin" element={<Signin/>} />
-        <Route path="/booking" element={<Bookings/>} />
+          <Route path="/signup" element={<Signup/>} />
+        
         {
           user?.role==="user" ? 
-<<<<<<< HEAD
-=======
-=======
-        <Route path="/facility" element={<Facility/>} />
-        <Route path="/calender" element={<CalenderPage />} />
-        <Route path="/bookings" element={<Bookings />} />
-        <Route path="/admin-booking" element={<AdminBooking />} />
-
-        {/* {
-          user.role=="user" ? 
->>>>>>> 7b162517b3c95e0a9396ac2b2b866fd721746d61
->>>>>>> c49dcb3d975cdfa91a6a9d9e42261aee46d85986
           <>
           <Route path="/facility" element={<Facility/>} />
           <Route path="/calender" element={<CalenderPage />} />
@@ -53,7 +39,7 @@ function App() {
         <Route path="/maintenance-log" element={<MaintenanceLog />} /> */}
        
         {
-           user?.role=="manager" ? 
+           user?.role=="manager" || user?.role == "admin" ? 
             <>
               <Route path="/maintenance" element={<Maintenance/>} />
               <Route path="/maintenance-log" element={<MaintenanceLog />} />
@@ -64,9 +50,28 @@ function App() {
               <Route path="/maintenance-log" element={<Signin />} />
             </>
           
+        }{
+          user?.role=="admin" ? 
+          <>
+          <Route path="/admin-booking" element={<AdminBooking/>} />
+          </>
+          :<>
+          <Route path="/admin-booking" element={<Signin/>} />
+          </>
+        }
+        {
+          user?.role=="user" ? 
+          <>
+          <Route path="/booking" element={<Bookings/>} />
+          </>
+          :<>
+          <Route path="/booking" element={<Signin/>} />
+          </>
         }
         
        
+<Route path="/signin" element={<Signin/>} />
+<Route path="/home" element={<Home/>} />
 
 
 

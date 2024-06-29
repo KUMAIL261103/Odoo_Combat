@@ -16,7 +16,7 @@ export default function AdminNavbar() {
             <a href="/admin-booking" className="text-[1.5vw] text-white hover:text-gray-400">
               Booking{" "}
             </a>
-            <a href="#" className="text-[1.5vw] text-white hover:text-gray-400">
+            <a href="/maintenance" className="text-[1.5vw] text-white hover:text-gray-400">
               Maintenance
             </a>
           </div>

@@ -12,10 +12,11 @@ export default function UserNavbar({ label1, label2, label3, label4 }) {
           {/* Logo */}
           <div className="h-[90px] w-[22vh] font-bold text-white flex  items-center justify-center">
             <img src={logo} alt="" className="w-auto h-32"/>
+            
           </div>
           {/* Navigation Links */}
           <div className="flex space-x-[1.5vw]">
-            <a href={"#"} className="text-[1.5vw] text-white hover:text-gray-400">
+            <a href={"/home"} className="text-[1.5vw] text-white hover:text-gray-400">
               {label1}
             </a>
             <a href={"/booking"} className="text-[1.5vw] text-white hover:text-gray-400">

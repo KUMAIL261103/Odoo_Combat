@@ -15,14 +15,14 @@ const dummyBookings = [
     },{
         id: 1,
         date: "2023-01-01",
-        sportType: "Football",
+        sportType: "Cricket",
         time: "10:00 AM",
         venue: "ahmedabad",
         approval: "Completed"
     },{
         id: 1,
         date: "2023-01-01",
-        sportType: "Football",
+        sportType: "Basketball",
         time: "10:00 AM",
         venue: "ahmedabad",
         approval: "Completed"

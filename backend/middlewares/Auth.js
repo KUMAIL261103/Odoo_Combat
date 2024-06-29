@@ -14,6 +14,7 @@ exports.auth = async(req,res,next)=>{
         if (req.headers.authorization) {
             token = req.headers.authorization.replace("Bearer ", "");
         }
+        console.log(token);
         if(!token){
             return res.status(401).json({
                 success:false,

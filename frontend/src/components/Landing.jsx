@@ -9,7 +9,7 @@ export default function Landing() {
           <h1 className="text-[12vw] font-bold text-light-green opacity-10 absolute inset-0 flex items-center justify-center">
             Sports
           </h1>
-          <h1 className="text-white text-[3.5vw] font-bold relative text-left">
+          <h1 className="text-white text-[3.5vw] font-bold relative text-left mt-[20%]">
             Sport Is
             <br />
             <span>Important For</span>

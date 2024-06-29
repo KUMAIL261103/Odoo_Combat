@@ -52,17 +52,30 @@ const CalendarPage = () => {
               className="mx-auto"
             />
           </div>
-          <div className="mt-6">
-            <h2 className="text-xl font-semibold mb-2">
-              Available Sports for {date.toDateString()}:
-            </h2>
+          <div className="mt-2 flex flex-col m-auto justify-center">
+            <h3 className="text-xl font-semibold mb-2">
+              Available Sports for <br />
+              <span className="text-bg-slate-950 font-bold ">
+                {date.toDateString()}
+              </span>
+              :
+            </h3>
             {availableSports.length > 0 ? (
               <ul className="list-disc pl-6">
-                {availableSports.map((sport, index) => (
-                  <li key={index} className="text-lg">
-                    {sport}
-                  </li>
-                ))}
+                <div className="flex">
+                  <div>
+                    {availableSports.map((sport, index) => (
+                      <li key={index} className="text-lg">
+                      
+                        {sport}
+                        <button className="border my-1 mx-3 border-black px-1  hover:bg-black hover:text-white">
+                        Book Now
+                      </button>
+                      </li>
+                    ))}
+                  </div>
+                   
+                </div>
               </ul>
             ) : (
               <p className="text-lg">No sports available for this date.</p>

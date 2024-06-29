@@ -1,7 +1,7 @@
 import Landing from "../components/Landing";
 import UserNavbar from "../components/UserNavbar";
 // import {FacilityCard} from "../components/FacilityCard";
-import LandingPage from '../assets/LandingPage.png';
+// import LandingPage from "../assets/LandingPage.png";
 
 export const Home = () => {
   return (
@@ -15,6 +15,5 @@ export const Home = () => {
       <Landing />
       {/* <FacilityCard img={LandingPage} alt="jkkjQFQF" heading="djknjkewnvkq" text="bdjkqev" price="wbbjqj" /> */}
     </div>
-  )
-
+  );
 };

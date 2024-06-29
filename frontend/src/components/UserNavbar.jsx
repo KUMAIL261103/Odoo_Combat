@@ -27,8 +27,11 @@ export default function UserNavbar({ label1, label2, label3, label4 }) {
           </div>
           {/* Login/Signin */}
           <div className="text-[1.5vw] flex items-center text-white">
-            <button className="border border-light-green px-[2vw] py-[1vh] rounded-xl hover:bg-light-green hover:text-black">
-              Sign In
+            <button
+              onClick={() => navigate("/signup")}
+              className="border border-light-green px-[2vw] py-[1vh] rounded-xl hover:bg-light-green hover:text-black"
+            >
+              Sign Up
             </button>
           </div>
         </div>
@@ -44,3 +47,4 @@ UserNavbar.propTypes = {
   label3: PropTypes.string.isRequired,
   label4: PropTypes.string.isRequired,
 };
+

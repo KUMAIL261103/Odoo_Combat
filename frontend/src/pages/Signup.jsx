@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { LoginBottomWarning } from "../components/LoginBottomWarning";
 import { LoginButton } from "../components/LoginButton";
 import { LoginHeading } from "../components/LoginHeading";
@@ -10,6 +11,38 @@ import { IoPersonOutline } from "react-icons/io5";
 import signinPageImg from "../assets/signinPage.avif";
 
 export const Signup = () => {
+  const [email, setEmail] = useState("");
+  const [firstName, setName] = useState("");
+  const [lastName, setLastname] = useState("");
+  const [password, setPassword] = useState("");
+  const [role, setRole] = useState("user");
+
+  const handleSignup = () => {
+    const requestBody = {
+      firstName,
+      lastName,
+      email,
+      password,
+      role,
+    };
+    console.log("Request Body:", requestBody); // Add this line to debug
+    async function signupdata() {
+      const response = await fetch("http://localhost:3000/api/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestBody),
+      });
+      const data = await response.json();
+      if (data.success) {
+        window.location.href = "/signin";
+      }
+      console.log(data);
+    }
+    signupdata();
+  };
+
   return (
     <>
       <div className="bg-slate-950 flex h-screen pt-16 pl-20 pr-20   ">
@@ -22,29 +55,41 @@ export const Signup = () => {
               <LoginInputBox
                 placeholder="Email"
                 icon={<MdOutlineMail color="white" />}
+                value={email}
+                onChange={setEmail}
               />
               <LoginInputBox
                 placeholder="Name"
                 icon={<IoPersonOutline color="white" />}
+                value={firstName}
+                onChange={setName}
               />
               <LoginInputBox
-                placeholder="Surname"
+                placeholder="Lastname"
                 icon={<IoPersonOutline color="white" />}
+                value={lastName}
+                onChange={setLastname}
               />
               <LoginInputBox
                 placeholder="Password"
                 icon={<RiLockPasswordLine color="white" />}
+                value={password}
+                onChange={setPassword}
               />
-              <select className="block w-full p-2 border border-gray-300 rounded-md outline-none focus:ring-0">
-                <option value="option1">User</option>
-                <option value="option2">Manager</option>
-                <option value="option3">Authority</option>
+              <select
+                className="block w-full p-2 border border-gray-300 rounded-md outline-none focus:ring-0"
+                value={role}
+                onChange={(e) => setRole(e.target.value)}
+              >
+                <option value="user">user</option>
+                <option value="manager">manager</option>
+                <option value="admin">admin</option>
               </select>
             </div>
             <div className="mt-3">
-              <LoginButton label={"Login"} />
+              <LoginButton label={"Sign up"} onClick={handleSignup} />
               <LoginBottomWarning
-                label={"Dont have an account?"}
+                label={"Already have an account?"}
                 buttonText={"Sign in"}
                 to={"/signin"}
               />

@@ -33,7 +33,7 @@ export const Facility = () => {
           <FacilityCard
             img={swimming}
             alt="Swimming"
-            heading="Basketball"
+            heading="Swimming"
             text="Swim in our Swimming court"
             price="Rs. 200 per hour"
             time="7:00 AM - 8:00 PM"
@@ -68,7 +68,7 @@ export const Facility = () => {
           <FacilityCard
             img={lawntennis}
             alt="Tennis"
-            heading="Tennis"
+            heading="Lawn Tennis"
             text="Play Tennis in our Tennis court"
             price="Rs. 200 per hour"
             time="7:00 AM - 7:00 PM"

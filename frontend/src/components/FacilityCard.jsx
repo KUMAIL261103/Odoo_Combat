@@ -26,19 +26,25 @@ export function FacilityCard({ img, alt, heading, text, price, time }) {
             <Heading size="md">{heading}</Heading>
             <Text> {time} </Text>
           </div>
-          <Text>{text}</Text>
-          <Text color="red.600" fontSize="lg">
-            {price}
-          </Text>
+          {/*<Text className="mb-2">{text}</Text>*/}
         </Stack>
+        <div spacing="3" className="mt-3 flex justify-between">
+          <div>
+            {" "}
+            <Text color="red.600" fontSize="lg">
+              {price}
+            </Text>
+          </div>
+          <div>
+            {" "}
+            <ButtonGroup spacing="2" className="m-auto">
+              <Button variant="solid" colorScheme="blue">
+                Book now
+              </Button>
+            </ButtonGroup>
+          </div>
+        </div>
       </CardBody>
-      <CardFooter>
-        <ButtonGroup spacing="2" className="m-auto">
-          <Button variant="solid" colorScheme="blue">
-            Book now
-          </Button>
-        </ButtonGroup>
-      </CardFooter>
     </Card>
   );
 }

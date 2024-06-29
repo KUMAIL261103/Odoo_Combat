@@ -19,15 +19,15 @@ export const Facility = () => {
         label4="Contact"
       />
 
-      <div className="flex flex-col bg-slate-900">
-        <div className="flex justify-between">
+      <div className="flex flex-col  bg-slate-900">
+        <div className="flex justify-between bg-slate-900">
           <FacilityCard
             img={volleyball}
             alt="Volleyball"
             heading="Volleyball"
             text="Play Volleyball in our Volleyball court"
-            price="Rs. 500 per hour"
-            time="11:00 AM - 12:00 PM"
+            price="Rs. 100 per hour"
+            time="7:00 AM - 11:00 PM"
             className="p-2"
           />
           <FacilityCard
@@ -35,24 +35,24 @@ export const Facility = () => {
             alt="Swimming"
             heading="Basketball"
             text="Swim in our Swimming court"
-            price="Rs. 500 per hour"
-            time="11:00 AM - 12:00 PM"
+            price="Rs. 200 per hour"
+            time="7:00 AM - 8:00 PM"
           />
           <FacilityCard
             img={archery}
             alt="Archery"
             heading="Archery"
             text="Aim in our Archery court"
-            price="Rs. 500 per hour"
-            time="11:00 AM - 12:00 PM"
+            price="Rs. 50 per hour"
+            time="7:00 AM - 7:00 PM"
           />
           <FacilityCard
             img={football}
             alt="Football"
             heading="Football"
             text="Play Football in our Football court"
-            price="Rs. 500 per hour"
-            time="11:00 AM - 12:00 PM"
+            price="Rs. 100 per hour"
+            time="7:00 AM - 7:00 PM"
           />
         </div>
         <div className="flex justify-between">
@@ -61,8 +61,8 @@ export const Facility = () => {
             alt="Basketball"
             heading="Basketball"
             text="Play Basketball in our indoor Basketball court"
-            price="Rs. 500 per hour"
-            time="11:00 AM - 12:00 PM"
+            price="Rs. 200 per hour"
+            time="7:00 AM - 9:00 PM"
           />
 
           <FacilityCard
@@ -70,24 +70,24 @@ export const Facility = () => {
             alt="Tennis"
             heading="Tennis"
             text="Play Tennis in our Tennis court"
-            price="Rs. 500 per hour"
-            time="11:00 AM - 12:00 PM"
+            price="Rs. 200 per hour"
+            time="7:00 AM - 7:00 PM"
           />
           <FacilityCard
             img={cricket}
             alt="Cricket"
             heading="Cricket"
             text="Play cricket in our Cricket court"
-            price="Rs. 500 per hour"
-            time="11:00 AM - 12:00 PM"
+            price="Rs. 100 per hour"
+            time="7:00 AM - 8:00 PM"
           />
           <FacilityCard
             img={badminton}
             alt="Badminton"
             heading="Badminton"
             text="Play Badminton in our indoor Badminton court"
-            price="Rs. 500 per hour"
-            time="11:00 AM - 12:00 PM"
+            price="Rs. 200 per hour"
+            time="7:00 AM - 9:00 PM"
           />
         </div>
       </div>

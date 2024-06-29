@@ -6,6 +6,10 @@ const facilitySchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    image:{
+      type: String,
+      required: true,
+    },
     location: {
       type: String,
       required: true,
@@ -19,10 +23,10 @@ const facilitySchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    AvailableDate: {
+    
+    isUsedDate: [{
       type: Date,
-      default: true,
-    },
+    }],
     maintainanceId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Maintainance",

@@ -15,8 +15,12 @@ const facilitySchema = new mongoose.Schema(
         type: String,
       },
     ],
-    availabilityStatus: {
-      type: Boolean,
+    amount: {
+      type: Number,
+      required: true,
+    },
+    AvailableDate: {
+      type: Date,
       default: true,
     },
     maintainanceId: {
@@ -26,10 +30,6 @@ const facilitySchema = new mongoose.Schema(
     bookingId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Booking",
-    },
-    amount: {
-      type: Number,
-      required: true,
     },
   },
   { timestamps: true }

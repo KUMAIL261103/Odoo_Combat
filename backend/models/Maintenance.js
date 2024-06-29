@@ -6,6 +6,9 @@ const maintainanceSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Facility",
     },
+    note: {
+      type: String,
+    },
     maintainanceDate: {
       type: Date,
       required: true,

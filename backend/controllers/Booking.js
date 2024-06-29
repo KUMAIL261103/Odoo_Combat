@@ -2,7 +2,7 @@ const Booking = require("../models/Booking");
 //get all bookings(for admin)
 exports.getAllBookings = async (req, res) => {
     try {
-        const bookings = await Booking.find();
+        const bookings = await Booking.find().populate("userId").populate("facilityId");
         res.status(200).json({
             success: true,
             bookings,
@@ -17,7 +17,7 @@ exports.getAllBookings = async (req, res) => {
 //get booking by userid(for user)
 exports.getBookingByUserId = async (req, res) => {
     try {
-        const bookings = await Booking.find({ userId: req.params.userId });
+        const bookings = await Booking.find({ userId: req.params.userId }).populate("facilityId");
         if (!bookings) {
             return res.status(404).json({
                 success: false,
@@ -38,7 +38,7 @@ exports.getBookingByUserId = async (req, res) => {
 //get booking by facilityid(for admin)
 exports.getBookingByFacilityId = async (req, res) => {
     try {
-        const bookings = await Booking.find({ facilityId: req.params.facilityId });
+        const bookings = await Booking.find({ facilityId: req.params.facilityId }).populate("userId");
         if (!bookings) {
             return res.status(404).json({
                 success: false,

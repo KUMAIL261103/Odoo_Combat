@@ -7,8 +7,9 @@ import { MdOutlineMail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { useState } from "react";
 import signinPageImg from "../assets/signinPage.avif";
-
+import { useNavigate } from "react-router-dom";
 export const Signin = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const handleLogin = () => {
@@ -32,6 +33,15 @@ export const Signin = () => {
         localStorage.setItem("user", JSON.stringify(data.user));
         sessionStorage.setItem("token", data.token);
         sessionStorage.setItem("user", JSON.stringify(data.user));
+        if(data.user.role=="manager"){
+          navigate("/maintenance");
+        }
+        else if(data.user.role=="user"){
+          navigate("/facility");
+        }
+        else if(data.user.role=="admin"){
+          navigate("/facility");
+        }
       }
       console.log(data);
     }

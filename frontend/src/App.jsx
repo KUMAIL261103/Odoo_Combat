@@ -9,6 +9,8 @@ import { ChakraProvider } from '@chakra-ui/react'
 
 function App() {
  
+  const token = localStorage.getItem("token") || sessionStorage.getItem("token");
+  const user = localStorage.getItem("user") || sessionStorage.getItem("user");
 
   return (
     <ChakraProvider>
@@ -19,9 +21,30 @@ function App() {
         <Route path="/home" element={<Home/>} /> 
         <Route path="/signup" element={<Signup/>} /> 
         <Route path="/signin" element={<Signin/>} />
-        <Route path="/facility" element={<Facility/>} />
-        <Route path="/maintenance" element={<Maintenance/>} />
-        <Route path="/maintenance-log" element={<MaintenanceLog />} /> 
+        {
+          user.role=="user" ? 
+          <>
+          <Route path="/facility" element={<Facility/>} />
+          </>
+          :<>
+          <Route path="/facility" element={<Signin/>}/>
+          </>
+        }
+       
+        {
+          token && user.role=="manager" ? (
+            <>
+              <Route path="/maintenance" element={<Maintenance/>} />
+              <Route path="/maintenance-log" element={<MaintenanceLog />} />
+            </>
+          ) : (
+            <>
+              <Route path="/maintenance" element={<Signin/>} />
+              <Route path="/maintenance-log" element={<Signin />} />
+            </>
+          )
+        }
+        
        
 
 

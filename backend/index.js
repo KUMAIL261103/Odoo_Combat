@@ -10,7 +10,9 @@ const port = process.env.PORT;
 app.use(cors());
 app.use(express.json());
 app.use('/api/auth',authroutes);   
-
+app.use('/api/facilities', require('./routes/Facilities'));
+app.use('/api/bookings', require('./routes/Booking'));
+app.use('/api/maintainances', require('./routes/Maintainance'));
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });

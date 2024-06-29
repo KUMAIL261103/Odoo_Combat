@@ -7,6 +7,7 @@ import { Maintenance } from "./pages/Maintenance";
 import MaintenanceLog from "./pages/MaintenanceLog";
 import { ChakraProvider } from "@chakra-ui/react";
 import CalenderPage from "./pages/Calender";
+import {Bookings } from "./pages/Bookings";
 function App() {
  
  // const token = localStorage.getItem("token") || sessionStorage.getItem("token");
@@ -22,9 +23,18 @@ function App() {
         <Route path="/home" element={<Home/>} /> 
         <Route path="/signup" element={<Signup/>} /> 
         <Route path="/signin" element={<Signin/>} />
+<<<<<<< HEAD
        
         {
           user?.role==="user" ? 
+=======
+        <Route path="/facility" element={<Facility/>} />
+        <Route path="/calender" element={<CalenderPage />} />
+        <Route path="/bookings" element={<Bookings />} />
+
+        {/* {
+          user.role=="user" ? 
+>>>>>>> 7b162517b3c95e0a9396ac2b2b866fd721746d61
           <>
           <Route path="/facility" element={<Facility/>} />
           <Route path="/calender" element={<CalenderPage />} />
@@ -59,10 +69,10 @@ function App() {
     
     </BrowserRouter>
     </>
+    </ChakraProvider>
   
          
           
-    </ChakraProvider>
   );
 }
 

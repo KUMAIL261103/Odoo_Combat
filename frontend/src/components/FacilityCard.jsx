@@ -11,7 +11,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-export function FacilityCard({ img, alt, heading, text, price, time }) {
+export function FacilityCard({ img, alt, heading, text, price, location }) {
   return (
     <Card maxW="xs" className="m-1.5">
       <CardBody>
@@ -24,14 +24,13 @@ export function FacilityCard({ img, alt, heading, text, price, time }) {
         <Stack mt="6" spacing="3">
           <div className="flex justify-between">
             <Heading size="md">{heading}</Heading>
-            <Text> {time} </Text>
+            <Text> {location} </Text>
           </div>
-          {/*<Text className="mb-2">{text}</Text>*/}
         </Stack>
         <div spacing="3" className="mt-3 flex justify-between">
           <div>
             {" "}
-            <Text color="red.600" fontSize="lg">
+            <Text color="black" fontSize="lg">
               {price}
             </Text>
           </div>

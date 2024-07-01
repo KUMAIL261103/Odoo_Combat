@@ -13,7 +13,7 @@ export const Facility = () => {
     const fetchFacilities = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/facilities/getAllFacilities"
+          "https://odoo-combat-cgs8.onrender.com/api/facilities/getAllFacilities"
         );
         setFacilities(response.data.facilities);
       } catch (error) {
@@ -23,21 +23,36 @@ export const Facility = () => {
 
     fetchFacilities();
   }, []);
-      const user = JSON.parse(sessionStorage.getItem("user")) || undefined;
-
+  const user = JSON.parse(sessionStorage.getItem("user")) || undefined;
 
   return (
     <>
-    {user === undefined ? (
-        <LandingNavbar label1="Home" label2="Booking" label3="Calendar" label4="Facility" />
+      {user === undefined ? (
+        <LandingNavbar
+          label1="Home"
+          label2="Booking"
+          label3="Calendar"
+          label4="Facility"
+        />
       ) : user.role === "user" ? (
-        <UserNavbar label1="Home" label2="Booking" label3="Calendar" label4="Facility" />
+        <UserNavbar
+          label1="Home"
+          label2="Booking"
+          label3="Calendar"
+          label4="Facility"
+        />
       ) : user.role === "manager" ? (
         <ManagerNavbar label1="Home" label2="Maintenance" />
       ) : user.role === "admin" ? (
         <AdminNavbar label1="Home" label2="Booking" />
-      ) :<LandingNavbar label1="Home" label2="Booking" label3="Calendar" label4="Facility" />}
-
+      ) : (
+        <LandingNavbar
+          label1="Home"
+          label2="Booking"
+          label3="Calendar"
+          label4="Facility"
+        />
+      )}
 
       <div className="flex flex-wrap gap-4">
         {facilities.length > 0 ? (

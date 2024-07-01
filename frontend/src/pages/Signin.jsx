@@ -19,13 +19,16 @@ export const Signin = () => {
     };
     console.log("Request Body:", requestBody); // Add this line to debug
     async function logindata() {
-      const response = await fetch("http://localhost:3000/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestBody),
-      });
+      const response = await fetch(
+        "https://odoo-combat-cgs8.onrender.com/api/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestBody),
+        }
+      );
       const data = await response.json();
       if (data.success) {
         window.location.href = "/home";
@@ -33,13 +36,11 @@ export const Signin = () => {
         // localStorage.setItem("user", JSON.stringify(data.user));
         sessionStorage.setItem("token", data.token);
         sessionStorage.setItem("user", JSON.stringify(data.user));
-        if(data.user.role=="manager"){
+        if (data.user.role == "manager") {
           navigate("/maintenance");
-        }
-        else if(data.user.role=="user"){
+        } else if (data.user.role == "user") {
           navigate("/facility");
-        }
-        else if(data.user.role=="admin"){
+        } else if (data.user.role == "admin") {
           navigate("/facility");
         }
       }

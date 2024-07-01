@@ -1,5 +1,8 @@
 # Sports Infrastructure Management System
 
+## [Frontend](https://sports-spacee.vercel.app/) 
+## [Backend](https://odoo-combat-cgs8.onrender.com/)
+
 ## Team Members
 
 - Prem Patel

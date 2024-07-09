@@ -3,15 +3,17 @@ import {
   Button,
   ButtonGroup,
   Card,
-  CardFooter,
-  Divider,
+  // CardFooter,
+  // Divider,
   Heading,
   Image,
   Stack,
   Text,
 } from "@chakra-ui/react";
 
-export function FacilityCard({ img, alt, heading, text, price, location }) {
+ import PropTypes from "prop-types";
+
+function FacilityCard({ img, alt, heading, price, location }) {
   return (
     <Card maxW="xs" className="m-1.5">
       <CardBody>
@@ -47,3 +49,12 @@ export function FacilityCard({ img, alt, heading, text, price, location }) {
     </Card>
   );
 }
+FacilityCard.propTypes = {
+  img: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired,
+  heading: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
+  location: PropTypes.string.isRequired,
+};
+
+export default FacilityCard;

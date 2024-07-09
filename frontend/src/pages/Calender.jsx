@@ -22,7 +22,13 @@ const CalendarPage = () => {
 
   const onDateChange = (newDate) => {
     setDate(newDate);
-    const dateString = newDate.toISOString().split("T")[0];
+    //console.log(newDate);
+    const year = newDate.getFullYear();
+    const month = String(newDate.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const day = String(newDate.getDate()).padStart(2, '0');
+    const dateString = `${year}-${month}-${day}`;
+    // const dateString = newDate.toISOString().split("T")[0];
+    // console.log(dateString);
     setAvailableSports(dummySportsData[dateString] || []);
   };
   const user = JSON.parse(sessionStorage.getItem("user")) || undefined;

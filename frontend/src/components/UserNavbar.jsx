@@ -3,7 +3,8 @@ import logo from "../assets/logo.png";
 import { useNavigate } from "react-router-dom";
 export default function UserNavbar({ label1, label2, label3, label4 }) {
   const token = sessionStorage.getItem("token");
-
+  //const user = JSON.parse(sessionStorage.getItem("user")) || undefined;
+  //console.log("hello",user);
   const navigate = useNavigate();
   return (
     <div>

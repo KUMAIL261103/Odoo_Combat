@@ -13,7 +13,6 @@ function App() {
  
  // const token = localStorage.getItem("token") || sessionStorage.getItem("token");
   const user = JSON.parse(sessionStorage.getItem("user")) || undefined;
-  console.log("User:", user);
 
   return (
     <ChakraProvider>

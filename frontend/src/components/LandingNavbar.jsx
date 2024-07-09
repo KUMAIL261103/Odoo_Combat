@@ -3,7 +3,7 @@ import logo from "../assets/logo.png";
 import { useNavigate } from "react-router-dom";
 export default function LandingNavbar({ label1, label2, label3, label4}) {
   const token = sessionStorage.getItem("token");
-
+  // console.log("jjjkkfff");
   const navigate = useNavigate();
   return (
     <div>

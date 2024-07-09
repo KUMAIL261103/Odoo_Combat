@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { FacilityCard } from "../components/FacilityCard";
-import UserNavbar from "../components/LandingNavbar";
+import FacilityCard  from "../components/FacilityCard";
+import UserNavbar from "../components/UserNavbar";
 import LandingNavbar from "../components/LandingNavbar";
 import ManagerNavbar from "../components/ManagerNavbar";
 import AdminNavbar from "../components/AdminNavbar";
@@ -23,21 +23,39 @@ export const Facility = () => {
 
     fetchFacilities();
   }, []);
-      const user = JSON.parse(sessionStorage.getItem("user")) || undefined;
-
+  const user = JSON.parse(sessionStorage.getItem("user")) || undefined;
+  console.log(user);
 
   return (
     <>
-    {user === undefined ? (
-        <LandingNavbar label1="Home" label2="Booking" label3="Calendar" label4="Facility" />
+      {!user ? (
+        <LandingNavbar
+          label1="Home"
+          label2="Booking"
+          label3="Calendar"
+          label4="Facility"
+        />
       ) : user.role === "user" ? (
-        <UserNavbar label1="Home" label2="Booking" label3="Calendar" label4="Facility" />
+        <UserNavbar
+          label1="Home"
+          label2="Booking"
+          label3="Calendar"
+          label4="Facility"
+        />
       ) : user.role === "manager" ? (
         <ManagerNavbar label1="Home" label2="Maintenance" />
       ) : user.role === "admin" ? (
         <AdminNavbar label1="Home" label2="Booking" />
-      ) :<LandingNavbar label1="Home" label2="Booking" label3="Calendar" label4="Facility" />}
-
+      ) : (
+        <LandingNavbar
+          label1="Home"
+          label2="Booking"
+          label3="Calendar"
+          label4="Facility"
+        />
+       
+      )
+      }
 
       <div className="flex flex-wrap gap-4">
         {facilities.length > 0 ? (

@@ -5,7 +5,7 @@ const db = require('./config/dbconnect');
 const authroutes = require('./routes/Auth');
 const app = express();
 require('dotenv').config();
-const port = process.env.PORT;
+const port = process.env.PORT ||  3000;
 
 app.use(cors());
 app.use(express.json());

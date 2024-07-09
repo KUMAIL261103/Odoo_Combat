@@ -1,4 +1,6 @@
 const Booking = require("../models/Booking");
+const Facility = require("../models/Facilities");
+const User = require("../models/User");
 //get all bookings(for admin)
 exports.getAllBookings = async (req, res) => {
     try {
@@ -61,14 +63,27 @@ exports.getBookingByFacilityId = async (req, res) => {
 exports.createBooking = async (req, res) => {
     try {
         const { userId, facilityId, date} = req.body;
-        const booking = await Booking.create(userId, facilityId, date);
-        const userupdate = await User.findByIdAndUpdate(userId, { $push: {
-            booking: booking
+        const data = {
+            userId:userId,
+            facilityId:facilityId,
+            bookingDate:date
+        }
+        const booking = await Booking.create(data);
+        const  facilityupdate = await Facility.findByIdAndUpdate(facilityId, { $push: {
+            isUsedDate: date
         } }, { new: true });
+        //add booking id to  to user
+        const userupdate = await User.findByIdAndUpdate(userId,{
+            $push: {
+                bookingId: booking._id
+            }
+        },{new:true});
         res.status(201).json({
             success: true,
+            message: "Booking created",
             booking,
         });
+
     } catch (error) {
         res.status(500).json({
             success: false,
@@ -76,6 +91,7 @@ exports.createBooking = async (req, res) => {
         });
     }
 }
+
 //approve booking(for admin)
 exports.approveBooking = async (req, res) => {
     try {

@@ -25,16 +25,16 @@ const facilitySchema = new mongoose.Schema(
     },
     
     isUsedDate: [{
-      type: Date,
+      type: String,
     }],
     MaintenanceId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Maintenance",
     },
-    bookingId: {
+    bookingId: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: "Booking",
-    },
+    }],
   },
   { timestamps: true }
 );

@@ -6,28 +6,34 @@ import LandingNavbar from "../components/LandingNavbar";
 import ManagerNavbar from "../components/ManagerNavbar";
 import AdminNavbar from "../components/AdminNavbar";
 
+// const isUsedDateCheck = (isUsedDate) => {
+//   if(isUsedDate.length === 0)return false;
+//   const year = new Date.getFullYear();
+//   console.log(year);
+//   const month = String(new Date.getMonth() + 1).padStart(2, '0');
+//   const day = String(new Date.getDate()).padStart(2, '0');
+//   const currentDate = `${year}-${month}-${day}`;
+//   for(let i=0;i<isUsedDate.length;i++){
+//     if(currentDate === isUsedDate[i]){
+//       return true;
+//     }
+//   }
+//   return false;
+// }
 const isUsedDateCheck = (isUsedDate) => {
-  if(isUsedDate.length === 0)return false;
-  let start = 0;
-  let end = isUsedDate.length - 1;
-  const year = new Date.getFullYear();
-  const month = String(new Date.getMonth() + 1).padStart(2, '0');
-  const day = String(new Date.getDate()).padStart(2, '0');
+  if (isUsedDate.length === 0) return false;
+
+  const year = new Date().getFullYear();
+  const month = String(new Date().getMonth() + 1).padStart(2, '0');
+  const day = String(new Date().getDate()).padStart(2, '0');
   const currentDate = `${year}-${month}-${day}`;
-  while(start <= end){
-    let mid = Math.floor((start + end) / 2);
-    let isUsedDate = isUsedDate[mid];
-    if(currentDate === isUsedDate){
+
+  for (let i = 0; i < isUsedDate.length; i++) {
+    if (currentDate === isUsedDate[i]) {
       return true;
-    }
-    if(currentDate < isUsedDate){
-      start = mid + 1;
-    }else{
-      end = mid - 1;
     }
   }
   return false;
-
 }
 const isAvailable = (facilities) => {
   const availableFacilities = [];
@@ -40,6 +46,7 @@ const isAvailable = (facilities) => {
 }
 export const Facility = () => {
   const [facilities, setFacilities] = useState([]);
+  const [render,setRender] = useState(false);
   useEffect(() => {
     const fetchFacilities = async () => {
       try {
@@ -56,7 +63,7 @@ export const Facility = () => {
     };
 
     fetchFacilities();
-  }, []);
+  }, [render]);
   const user = JSON.parse(sessionStorage.getItem("user")) || undefined;
   console.log(user);
 
@@ -99,9 +106,11 @@ export const Facility = () => {
               <FacilityCard
                 img={facility.image}
                 alt={facility.name}
+                FacilityId={facility?._id}
                 heading={facility.name}
                 location={facility.location}
                 price={`${facility.amount} ₹`}
+                rerender={setRender}
                 className="p-2"
               />
             </div>

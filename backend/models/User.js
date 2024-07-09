@@ -26,14 +26,14 @@ const UserSchema = new mongoose.Schema(
       default: "user",
       required: true,
     },
-    bookingId: {
+    bookingId: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: "Booking",
-    },
-    paymentId: {
+    }],
+    paymentId: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: "Payment",
-    },
+    }],
 
     token: {
       type: String,

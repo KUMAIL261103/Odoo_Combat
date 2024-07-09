@@ -13,7 +13,7 @@ export const Facility = () => {
     const fetchFacilities = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/facilities/getAllFacilities"
+          "https://odoo-combat-cgs8.onrender.com/api/facilities/getAllFacilities"
         );
         setFacilities(response.data.facilities);
       } catch (error) {

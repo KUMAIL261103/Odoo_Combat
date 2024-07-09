@@ -27,13 +27,16 @@ export const Signup = () => {
     };
     console.log("Request Body:", requestBody); // Add this line to debug
     async function signupdata() {
-      const response = await fetch("http://localhost:3000/api/auth/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestBody),
-      });
+      const response = await fetch(
+        "https://odoo-combat-cgs8.onrender.com/api/auth/signup",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestBody),
+        }
+      );
       const data = await response.json();
       if (data.success) {
         window.location.href = "/signin";

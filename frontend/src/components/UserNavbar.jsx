@@ -3,7 +3,7 @@ import logo from "../assets/logo.png";
 import { useNavigate } from "react-router-dom";
 export default function UserNavbar({ label1, label2, label3, label4 }) {
   const token = sessionStorage.getItem("token");
-  //const user = JSON.parse(sessionStorage.getItem("user")) || undefined;
+  const user = JSON.parse(sessionStorage.getItem("user")) || undefined;
   //console.log("hello",user);
   const navigate = useNavigate();
   return (
@@ -16,7 +16,7 @@ export default function UserNavbar({ label1, label2, label3, label4 }) {
             
           </div>
           {/* Navigation Links */}
-          <div className="flex space-x-[1.5vw]">
+          <div className="flex space-x-[1.5vw] pr-[5%]">
             <a href={"/home"} className="text-[1.5vw] text-white hover:text-gray-400">
               {label1}
             </a>
@@ -31,13 +31,17 @@ export default function UserNavbar({ label1, label2, label3, label4 }) {
             </a>
           </div>
           {/* Login/Signin */}
-          <div className="text-[1.5vw] flex items-center text-white">
+          <div className="text-[1.3vw] flex items-center text-white">
+          {user ? (
+              <span className="flex items-center justify-center text-white font-light opacity-90 capitalize">welcome, {user.firstName}</span>
+            ) : (
             <button
               onClick={() => navigate("/signup")}
 
               className={`border border-light-green px-[2vw] py-[1vh] rounded-xl hover:bg-light-green hover:text-black ${token!=undefined?"hidden":"visible"}`} >
               Sign Up
             </button>
+             )}
           </div>
         </div>
       </nav>

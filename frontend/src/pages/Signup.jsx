@@ -1,3 +1,5 @@
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useState } from "react";
 import { LoginBottomWarning } from "../components/LoginBottomWarning";
 import { LoginButton } from "../components/LoginButton";
@@ -27,6 +29,7 @@ export const Signup = () => {
     };
     console.log("Request Body:", requestBody); // Add this line to debug
     async function signupdata() {
+      try {
       const response = await fetch(
         "https://odoo-combat-cgs8.onrender.com/api/auth/signup",
         {
@@ -39,15 +42,43 @@ export const Signup = () => {
       );
       const data = await response.json();
       if (data.success) {
-        window.location.href = "/signin";
-      }
+        // window.location.href = "/signin";
+        toast.success(`Successfully signed up, ${firstName}!`, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+      })
       console.log(data);
+      setTimeout(() => {
+        window.location.href = "/signin";
+      }, 1000);
+    } else {
+      // Show error toast
+      toast.error("Signup failed. Please try again.", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
     }
-    signupdata();
-  };
+    console.log(data);
+  } catch (error) {
+    console.error("Signup error:", error);
+    toast.error("An error occurred. Please try again later.");
+  }
+}
+signupdata();
+};
+
 
   return (
     <>
+    <ToastContainer />
       <div className="bg-slate-950 flex h-screen pt-16 pl-20 pr-20   ">
         <div className="flex flex-col w-1/2">
           <div className=" px-9 justify-start">

@@ -1,3 +1,5 @@
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { LoginBottomWarning } from "../components/LoginBottomWarning";
 import { LoginButton } from "../components/LoginButton";
 import { LoginHeading } from "../components/LoginHeading";
@@ -19,6 +21,7 @@ export const Signin = () => {
     };
     console.log("Request Body:", requestBody); // Add this line to debug
     async function logindata() {
+      try {
       const response = await fetch(
         "https://odoo-combat-cgs8.onrender.com/api/auth/login",
         {
@@ -31,25 +34,52 @@ export const Signin = () => {
       );
       const data = await response.json();
       if (data.success) {
-        window.location.href = "/home";
+        // window.location.href = "/home";
         // localStorage.setItem("token", data.token);
         // localStorage.setItem("user", JSON.stringify(data.user));
         sessionStorage.setItem("token", data.token);
         sessionStorage.setItem("user", JSON.stringify(data.user));
-        if (data.user.role == "manager") {
-          navigate("/maintenance");
-        } else if (data.user.role == "user") {
-          navigate("/facility");
-        } else if (data.user.role == "admin") {
-          navigate("/facility");
+
+        toast.success(`Welcome back, ${data.user.firstName}!`, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          
+        });
+        
+
+
+          setTimeout(() => {
+            if (data.user.role === "manager") {
+              navigate("/maintenance");
+            } else if (data.user.role === "user" || data.user.role === "admin") {
+              navigate("/facility");
+            }
+          }, 1000);
+        } else {
+          toast.error("Login failed. Please check your credentials.", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          });
         }
+        console.log(data);
+      } catch (error) {
+        console.error("Login error:", error);
+        toast.error("An error occurred. Please try again later.");
       }
-      console.log(data);
     }
     logindata();
   };
   return (
     <>
+       <ToastContainer />
       <div className="bg-slate-950 h-screen pt-20 pl-20 pr-20 flex">
         <div className="flex flex-col w-1/2  ">
           <div className="pt-6 px-9 justify-start">

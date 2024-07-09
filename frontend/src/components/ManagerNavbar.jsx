@@ -1,6 +1,7 @@
 import logo from "../assets/logo.png";
 
 export default function MangerNavbar() {
+  // const user = JSON.parse(sessionStorage.getItem("user")) || undefined;
   // let token = localStorage.getItem("token");
   // const navigate = useNavigate();
   return (

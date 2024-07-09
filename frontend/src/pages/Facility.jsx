@@ -91,7 +91,7 @@ export const Facility = () => {
       )
       }
 
-      <div className="flex flex-wrap gap-4">
+      <div className="flex flex-wrap justify-around">
         {facilities.length > 0 ? (
           facilities.map((facility, index) => (
             

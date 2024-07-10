@@ -51,7 +51,8 @@ exports.createFacility = async (req, res) => {
 }
 exports.getFacilityByDate = async (req, res) => {
     try {
-       const facility = await Facility.find({ isUsedDate: { $ne: req.params.date } });
+        console.log("this is  data-->",req.params.currDate);
+       const facility = await Facility.find({ isUsedDate: { $ne: req.params.currDate } });
         if (!facility) {
             return res.status(404).json({
                 success: false,

@@ -9,11 +9,13 @@ const ConformationalModal = ({
   closeModal,
   rerender,
 }) => {
+    console.log(FacilityId,heading,price,location,date);
   const user = JSON.parse(sessionStorage.getItem("user")) || undefined;
-  console.log("this iss user datra", user);
+//   console.log("this iss user datra", user);
   const token = sessionStorage.getItem("token") || undefined;
   // console.log("this is token",token);
   const bookFacility = async (FacilityId, userId, date) => {
+    
     const backendUrl = import.meta.env.VITE_APP_URL || "http://localhost:3000";
     const confirmbooking = await fetch(
       `${backendUrl}/api/bookings/createBooking`,

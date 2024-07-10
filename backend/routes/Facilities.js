@@ -12,6 +12,6 @@ const {
 router.get("/getAllFacilities", getAllFacilities);
 router.get("/getFacility/:id", auth, getFacility);
 router.post("/createFacility", auth, isAdmin, createFacility);
-router.get("/getFacilityByDate/:date", auth, getFacilityByDate);
+router.get("/getFacilityByDate/:currDate", auth, getFacilityByDate);
 
 module.exports = router;

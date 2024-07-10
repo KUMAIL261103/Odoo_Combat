@@ -99,6 +99,9 @@ export const Facility = () => {
       }
 
       <div className="flex flex-wrap justify-around">
+        {
+          facilities.length === 0 && <div className="text-slate-900 text-lg">No facilities available</div>
+        }
         {facilities.length > 0 ? (
           facilities.map((facility, index) => (
             

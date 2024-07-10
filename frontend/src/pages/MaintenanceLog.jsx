@@ -1,4 +1,5 @@
-import UserNavbar from "../components/LandingNavbar";
+import AdminNavbar from "../components/AdminNavbar";
+// import UserNavbar from "../components/LandingNavbar";
 
 const MaintenanceLog = () => {
   const maintenanceLogs = [
@@ -14,12 +15,8 @@ const MaintenanceLog = () => {
 
   return (
     <>
-      <UserNavbar
-        label1="Home"
-        label2="Booking"
-        label3="Schedule"
-        label4="Contact"
-      />
+    <AdminNavbar/>
+
 
       <div className="flex flex-col  min-h-screen  bg-slate-950 p-2 pl-10">
         <div className="w-3/4 max-w-md bg-slate-900 text-white p-3 rounded-lg">

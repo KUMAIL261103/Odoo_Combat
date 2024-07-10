@@ -99,10 +99,8 @@ export const Facility = () => {
       )
       }
 
-      <div className="flex flex-wrap justify-around">
-        {
-          facilities.length === 0 && <div className="text-slate-900 text-lg">No facilities available</div>
-        }
+      <div className="flex flex-wrap justify-around w-screen h-screen place-items-center">
+        
         {facilities.length > 0 ? (
           facilities.map((facility, index) => (
             <div className="flex justify-between " key={index}>
@@ -119,7 +117,7 @@ export const Facility = () => {
             </div>
           ))
         ) : (
-          <div className="text-white">Loading facilities...</div>
+          <div className="text-slate-900 text-2xl font-semibold">No facilities available on current day</div>
         )}
       </div>
     </>

@@ -4,6 +4,11 @@ import { useNavigate } from "react-router-dom";
 export default function UserNavbar({ label1, label2, label3, label4 }) {
   const token = sessionStorage.getItem("token");
   const user = JSON.parse(sessionStorage.getItem("user")) || undefined;
+  const logout = () => {
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("user");
+    window.location.reload();
+  };
   //console.log("hello",user);
   const navigate = useNavigate();
   return (
@@ -33,7 +38,11 @@ export default function UserNavbar({ label1, label2, label3, label4 }) {
           {/* Login/Signin */}
           <div className="text-[1.3vw] flex items-center text-white">
           {user ? (
-              <span className="flex items-center justify-center text-white font-light opacity-90 capitalize">welcome, {user.firstName}</span>
+              <div className="flex flex-col place-items-center  gap-2 mt-4">
+
+                <span className="flex items-center  justify-center  text-white font-light opacity-90 capitalize">welcome, {user.firstName}</span>
+                <button className=" px-3  rounded-md bg-slate-600 text-gray-white text-lg" onClick={()=>logout()}>Logout</button>
+              </div>
             ) : (
             <button
               onClick={() => navigate("/signup")}

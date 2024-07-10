@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import FacilityCard  from "../components/FacilityCard";
+import FacilityCard from "../components/FacilityCard";
 import UserNavbar from "../components/UserNavbar";
 import LandingNavbar from "../components/LandingNavbar";
 import ManagerNavbar from "../components/ManagerNavbar";
@@ -24,8 +24,8 @@ const isUsedDateCheck = (isUsedDate) => {
   if (isUsedDate.length === 0) return false;
 
   const year = new Date().getFullYear();
-  const month = String(new Date().getMonth() + 1).padStart(2, '0');
-  const day = String(new Date().getDate()).padStart(2, '0');
+  const month = String(new Date().getMonth() + 1).padStart(2, "0");
+  const day = String(new Date().getDate()).padStart(2, "0");
   const currentDate = `${year}-${month}-${day}`;
 
   for (let i = 0; i < isUsedDate.length; i++) {
@@ -34,26 +34,27 @@ const isUsedDateCheck = (isUsedDate) => {
     }
   }
   return false;
-}
+};
 const isAvailable = (facilities) => {
   const availableFacilities = [];
-  for(let i=0;i<facilities.length;i++){  
-    if(isUsedDateCheck(facilities[i].isUsedDate)==false){
+  for (let i = 0; i < facilities.length; i++) {
+    if (isUsedDateCheck(facilities[i].isUsedDate) == false) {
       availableFacilities.push(facilities[i]);
-    }  
+    }
   }
   return availableFacilities;
-}
+};
 export const Facility = () => {
   const [facilities, setFacilities] = useState([]);
-  const [render,setRender] = useState(false);
+  const [render, setRender] = useState(false);
   useEffect(() => {
     const fetchFacilities = async () => {
       try {
-        const backendUrl = import.meta.url.VITE_API_URL || "http://localhost:3000";
+        const backendUrl =
+          import.meta.url.VITE_API_URL || "http://localhost:3000";
         const response = await axios.get(
           `${backendUrl}/api/facilities/getAllFacilities`
-         );
+        );
         const availableFacilities = isAvailable(response.data.facilities);
         console.log(response.data.facilities);
         setFacilities(availableFacilities);
@@ -84,9 +85,9 @@ export const Facility = () => {
           label4="Facility"
         />
       ) : user.role === "manager" ? (
-        <ManagerNavbar label1="Home" label2="Maintenance" />
+        <ManagerNavbar />
       ) : user.role === "admin" ? (
-        <AdminNavbar label1="Home" label2="Booking" />
+        <AdminNavbar />
       ) : (
         <LandingNavbar
           label1="Home"
@@ -104,7 +105,6 @@ export const Facility = () => {
         }
         {facilities.length > 0 ? (
           facilities.map((facility, index) => (
-            
             <div className="flex justify-between " key={index}>
               <FacilityCard
                 img={facility.image}

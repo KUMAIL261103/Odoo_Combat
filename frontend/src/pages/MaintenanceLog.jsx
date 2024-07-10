@@ -1,6 +1,9 @@
-import UserNavbar from "../components/LandingNavbar";
+import AdminNavbar from "../components/AdminNavbar";
+import ManagerNavbar from "../components/ManagerNavbar";
+// import UserNavbar from "../components/LandingNavbar";
 
 const MaintenanceLog = () => {
+  const user = JSON.parse(sessionStorage.getItem("user")) || undefined;
   const maintenanceLogs = [
     { id: 1, date: "2023-01-01", description: "Replaced air filters" },
     { id: 2, date: "2023-02-01", description: "Checked HVAC system" },
@@ -14,12 +17,12 @@ const MaintenanceLog = () => {
 
   return (
     <>
-      <UserNavbar
-        label1="Home"
-        label2="Booking"
-        label3="Schedule"
-        label4="Contact"
-      />
+    {user.role === "manager" ? (
+      <ManagerNavbar />
+    ) : (
+    user.role === "admin" && <AdminNavbar />
+    )}
+
 
       <div className="flex flex-col  min-h-screen  bg-slate-950 p-2 pl-10">
         <div className="w-3/4 max-w-md bg-slate-900 text-white p-3 rounded-lg">

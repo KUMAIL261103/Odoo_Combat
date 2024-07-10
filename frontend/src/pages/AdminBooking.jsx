@@ -1,5 +1,6 @@
 import { FaCalendarAlt, FaClock, FaUser, FaFootballBall } from 'react-icons/fa';
 import { useState } from 'react';
+import AdminNavbar from '../components/AdminNavbar';
 
 const initialBookings = [
     {
@@ -40,7 +41,9 @@ export const AdminBooking = () => {
     const handleDeny = (id) => {
         setBookings(bookings.map(booking => booking.id===id ? {...booking, status: "Denied"}: booking))
     }
-    return <div className="min-h-screen bg-slate-950 text-white p-8">
+    return <>
+    <AdminNavbar/>
+    <div className="min-h-screen bg-slate-950 text-white p-8">
         <h1 className="text-4xl font-bold mb-8">Booking Requests</h1>
         <div className="overflow-x-auto">
             <table className="min-w-full bg-slate-800 rounded-lg overflow-hidden">
@@ -118,4 +121,6 @@ export const AdminBooking = () => {
             </table>
         </div>
     </div>
-}
+
+    </>
+}    

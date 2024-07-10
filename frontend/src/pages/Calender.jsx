@@ -71,7 +71,7 @@ const CalendarPage = () => {
       ) : user.role === "user" ? (
         <UserNavbar label1="Home" label2="Booking" label3="Calendar" label4="Facility" />
       ) : user.role === "manager" ? (
-        <ManagerNavbar label1="Home" label2="Maintenance" />
+        <ManagerNavbar />
       ) : user.role === "admin" ? (
         <AdminNavbar label1="Home" label2="Booking" />
       ) : (

@@ -41,9 +41,9 @@ const CalendarPage = () => {
       ) : user.role === "user" ? (
         <UserNavbar label1="Home" label2="Booking" label3="Calendar" label4="Facility" />
       ) : user.role === "manager" ? (
-        <ManagerNavbar label1="Home" label2="Maintenance" />
+        <ManagerNavbar />
       ) : user.role === "admin" ? (
-        <AdminNavbar label1="Home" label2="Booking" />
+        <AdminNavbar />
       ) :<LandingNavbar label1="Home" label2="Booking" label3="Calendar" label4="Facility" />}
 
       <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">

@@ -65,9 +65,9 @@ export const Bookings = () => {
             label4="Facility"
           />
         ) : auth.user.role === "manager" ? (
-          <ManagerNavbar label1="Home" label2="Maintenance" />
+          <ManagerNavbar />
         ) : auth.user.role === "admin" ? (
-          <AdminNavbar label1="Home" label2="Booking" />
+          <AdminNavbar  />
         ) : (
           <LandingNavbar
             label1="Home"

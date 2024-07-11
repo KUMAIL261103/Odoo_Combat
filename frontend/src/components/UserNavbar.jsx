@@ -7,6 +7,7 @@ export default function UserNavbar({ label1, label2, label3, label4 }) {
   const logout = () => {
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("user");
+    navigate("/signin");
     window.location.reload();
   };
   //console.log("hello",user);

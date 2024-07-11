@@ -6,6 +6,7 @@ export default function AdminNavbar() {
   const logout = () => {
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("user");
+    navigate("/signin");
     window.location.reload();
   };
    let token = sessionStorage.getItem("token");

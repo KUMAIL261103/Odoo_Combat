@@ -89,7 +89,7 @@ const ConformationalModal = ({
         <div className="flex items-center justify-center gap-4 mt-6">
           <button
             onClick={() => bookFacility(FacilityId, user?._id, date)}
-            className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 flex items-center"
+            className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 -ml-7 rounded-lg transition duration-300 flex items-center"
           >
             <svg
               className="w-5 h-5 mr-2"

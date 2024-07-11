@@ -103,30 +103,26 @@ const CalendarPage = () => {
               :
             </h3>
             {availableSports?.length > 0 ? (
-              <div className="flex">
-                <div className="flex flex-row gap-3 flex-wrap">
-                  {availableSports.map((facility, index) => (
-                    <div key={index} className="bg-slate-500 border-sky-300 border-2 p-4">
-                      <div className="text-base">
-                        <p className="text-pretty text-xl text-slate-950 font-medium border-2 border-red-400">
-                          {facility.name}
-                        </p>
-                        <div className="flex flex-row items-center justify-between bg-amber-300 w-52">
-                          <p>
-                            {facility.location}
-                          </p>
-                          <button
-                            className="border my-1 mx-3 border-black px-1 hover:bg-black hover:text-white"
-                            onClick={() => setSelectedFacility(facility)}
-                          >
-                            Book Now
-                          </button>
-                        </div>
-                      </div>
+              <div className="mt-6 bg-white p-6 rounded-lg shadow-md">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {availableSports.map((facility, index) => (
+                  <div key={index} className="bg-white border border-slate-200 rounded-lg overflow-hidden transition-transform duration-300 hover:scale-105">
+                    <div className="bg-light-green text-slate-950 p-3">
+                      <h3 className="text-lg font-semibold">{facility.name}</h3>
                     </div>
-                  ))}
-                </div>
+                    <div className="p-4">
+                      <p className="text-slate-600 mb-3">{facility.location}</p>
+                      <button
+                        className="w-full bg-slate-950 text-white py-2 px-4 rounded hover:bg-slate-800 transition duration-300"
+                        onClick={() => setSelectedFacility(facility)}
+                      >
+                        Book Now
+                      </button>
+                    </div>
+                  </div>
+                ))}
               </div>
+            </div>
             ) : (
               <p className="text-pretty text-2xl text-slate-950 font-medium">No sports available for this date.</p>
             )}

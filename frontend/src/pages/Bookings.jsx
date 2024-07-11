@@ -23,9 +23,10 @@ export const Bookings = () => {
         const { user, token } = auth;
         if (!user || !token) return; // Guard clause to handle undefined user or token
         console.log("Fetching bookings for user:", user._id); // Debugging log
-
+        const backendapi = import.meta.env.VITE_APP_URL || "http://localhost:3000";
+        console.log(backendapi);
         const response = await fetch(
-          `http://localhost:3000/api/bookings/getBookingByUserId?userId=${user._id}`,
+          `${backendapi}/api/bookings/getBookingByUserId?userId=${user._id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -36,7 +37,11 @@ export const Bookings = () => {
           throw new Error("Failed to fetch bookings");
         }
         const data = await response.json();
-        setBookings(data.bookings);
+        //console.log(data);
+        const bookingarray = data.bookings;
+        bookingarray.reverse();
+        setBookings(bookingarray);
+        
       } catch (error) {
         setError(error.message);
       } finally {
@@ -107,7 +112,7 @@ export const Bookings = () => {
                   </p>
                   <p className="flex items-center mb-2 text-white">
                     <FaClock className="mr-2 text-light-green" />
-                    {new Date(booking.bookingDate).toLocaleTimeString()}
+                    {new Date(booking.createdAt).toLocaleTimeString()}
                   </p>
                   {/* <ApprovalBadge approval={booking.bookingStatus} /> */}
                 </div>

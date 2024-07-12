@@ -23,12 +23,11 @@ function App() {
             <Route path="/home" element={<Home />} />
              <Route path="/signin" element={<Signin />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/facility" element={<Facility />} />
+            {/* <Route path="/facility" element={<Facility />} />
             <Route path="/calender" element={<CalenderPage />} />
             <Route path="/maintenance" element={<Maintenance />} />
             <Route path="/maintenance-log" element={<MaintenanceLog />} />
-            <Route path="/admin-booking" element={<AdminBooking />} />
-             <Route path="*" element={<NotFound />} />
+            <Route path="/admin-booking" element={<AdminBooking />} /> */}
             {user?.role === "user" ? (
               <>
                 <Route path="/facility" element={<Facility />} />
@@ -65,6 +64,7 @@ function App() {
                 <Route path="/admin-booking" element={<Signin />} />
               </>
             )}
+            <Route path="*" element={<NotFound />} />
            
 
             

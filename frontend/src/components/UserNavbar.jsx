@@ -5,6 +5,8 @@ import { useState } from "react";
 export default function UserNavbar({ label1, label2, label3, label4 }) {
   const token = sessionStorage.getItem("token");
   const user = JSON.parse(sessionStorage.getItem("user")) || undefined;
+  console.log(user);
+  console.log(token);
   const logout = () => {
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("user");

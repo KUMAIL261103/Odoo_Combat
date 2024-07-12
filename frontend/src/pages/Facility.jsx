@@ -52,6 +52,8 @@ export const Facility = () => {
       try {
         const backendUrl =
           import.meta.url.VITE_API_URL || "http://localhost:3000";
+          console.log(backendUrl);
+    
         const response = await axios.get(
           `${backendUrl}/api/facilities/getAllFacilities`
         );

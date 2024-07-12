@@ -20,7 +20,7 @@ const CalendarPage = () => {
   const [selectedFacility, setSelectedFacility] = useState(null);
   useEffect(() => {
     const getAllAvailableSportsOnCurrDate = async (currDate) => {
-      const backendUrl = import.meta.env.VITE_APP_URL || "http://localhost:3000";
+      const backendUrl = import.meta.env.VITE_API_URL || "http://localhost:3000";
       await fetch(`${backendUrl}/api/facilities/getFacilityByDate/${currDate}`, {
         method: "GET",
         headers: {

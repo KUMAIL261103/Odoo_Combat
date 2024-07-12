@@ -6,9 +6,11 @@ const authroutes = require('./routes/Auth');
 const app = express();
 require('dotenv').config();
 const port = process.env.PORT ||  3000;
-
 app.use(cors());
 app.use(express.json());
+app.get('/', (req, res) => {
+    res.send('Backend is working');
+});
 app.use('/api/auth',authroutes);   
 app.use('/api/facilities', require('./routes/Facilities'));
 app.use('/api/bookings', require('./routes/Booking'));

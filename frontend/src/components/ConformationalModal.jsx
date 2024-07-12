@@ -16,7 +16,7 @@ const ConformationalModal = ({
   // console.log("this is token",token);
   const bookFacility = async (FacilityId, userId, date) => {
     
-    const backendUrl = import.meta.env.VITE_APP_URL || "http://localhost:3000";
+    const backendUrl = import.meta.env.VITE_API_URL || "http://localhost:3000";
     const confirmbooking = await fetch(
       `${backendUrl}/api/bookings/createBooking`,
       {

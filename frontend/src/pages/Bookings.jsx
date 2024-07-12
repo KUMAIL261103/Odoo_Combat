@@ -16,14 +16,14 @@ export const Bookings = () => {
     user: JSON.parse(sessionStorage.getItem("user")) || null,
     token: sessionStorage.getItem("token"),
   });
-
+  console.log(setAuth); //consoled just to avoid unused error
   useEffect(() => {
     const fetchBookings = async () => {
       try {
         const { user, token } = auth;
         if (!user || !token) return; // Guard clause to handle undefined user or token
         console.log("Fetching bookings for user:", user._id); // Debugging log
-        const backendapi = import.meta.env.VITE_APP_URL || "http://localhost:3000";
+        const backendapi = import.meta.env.VITE_API_URL || "http://localhost:3000";
         console.log(backendapi);
         const response = await fetch(
           `${backendapi}/api/bookings/getBookingByUserId?userId=${user._id}`,

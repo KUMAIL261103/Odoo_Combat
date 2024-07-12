@@ -11,7 +11,7 @@ export default function UserNavbar({ label1, label2, label3, label4 }) {
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("user");
     navigate("/signin");
-    //window.location.reload();
+    window.location.reload();
   };
   //console.log("hello",user);
   const navigate = useNavigate();

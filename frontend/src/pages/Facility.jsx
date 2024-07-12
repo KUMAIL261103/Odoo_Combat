@@ -50,15 +50,14 @@ export const Facility = () => {
   useEffect(() => {
     const fetchFacilities = async () => {
       try {
-        const backendUrl =
-          import.meta.url.VITE_API_URL || "http://localhost:3000";
-          console.log(backendUrl);
+        const backendUrl = import.meta.env.VITE_API_URL || "http://localhost:3000";
+          //console.log(backendUrl);
     
         const response = await axios.get(
           `${backendUrl}/api/facilities/getAllFacilities`
         );
         const availableFacilities = isAvailable(response.data.facilities);
-        console.log(response.data.facilities);
+        //console.log(response.data.facilities);
         setFacilities(availableFacilities);
       } catch (error) {
         console.error("Error fetching facilities:", error);
@@ -68,7 +67,7 @@ export const Facility = () => {
     fetchFacilities();
   }, [render]);
   const user = JSON.parse(sessionStorage.getItem("user")) || undefined;
-  console.log(user);
+  //console.log(user);
 
   return (
     <>

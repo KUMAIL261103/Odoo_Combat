@@ -19,11 +19,14 @@ export const Signin = () => {
       email,
       password,
     };
-    console.log("Request Body:", requestBody); // Add this line to debug
+    //console.log("Request Body:", requestBody);
     async function logindata() {
       try {
+        // console.log("this is all",import.meta.env);
+        // console.log("this is us",import.meta.env.VITE_API_URL);
+        const backendapi = import.meta.env.VITE_API_URL || "http://localhost:3000";
       const response = await fetch(
-        "https://odoo-combat-cgs8.onrender.com/api/auth/login",
+        `${backendapi}/api/auth/login`,
         {
           method: "POST",
           headers: {
@@ -58,6 +61,7 @@ export const Signin = () => {
             } else if (data.user.role === "user" || data.user.role === "admin") {
               navigate("/facility");
             }
+             window.location.reload();
           }, 1000);
         } else {
           toast.error("Login failed. Please check your credentials.", {

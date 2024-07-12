@@ -22,9 +22,9 @@ export const Bookings = () => {
       try {
         const { user, token } = auth;
         if (!user || !token) return; // Guard clause to handle undefined user or token
-        console.log("Fetching bookings for user:", user._id); // Debugging log
+        //console.log("Fetching bookings for user:", user._id); // Debugging log
         const backendapi = import.meta.env.VITE_API_URL || "http://localhost:3000";
-        console.log(backendapi);
+        //console.log(backendapi);
         const response = await fetch(
           `${backendapi}/api/bookings/getBookingByUserId?userId=${user._id}`,
           {

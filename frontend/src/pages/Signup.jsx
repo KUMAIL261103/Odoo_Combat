@@ -30,8 +30,9 @@ export const Signup = () => {
     console.log("Request Body:", requestBody); // Add this line to debug
     async function signupdata() {
       try {
+      const backendapi = import.meta.env.VITE_API_URL || "http://localhost:3000";
       const response = await fetch(
-        "https://odoo-combat-cgs8.onrender.com/api/auth/signup",
+        `${backendapi}/api/auth/signup`,
         {
           method: "POST",
           headers: {

@@ -50,9 +50,10 @@ export const Facility = () => {
   useEffect(() => {
     const fetchFacilities = async () => {
       try {
-        const backendUrl = import.meta.env.VITE_API_URL || "http://localhost:3000";
-          //console.log(backendUrl);
-    
+        const backendUrl =
+          import.meta.env.VITE_API_URL || "http://localhost:3000";
+        //console.log(backendUrl);
+
         const response = await axios.get(
           `${backendUrl}/api/facilities/getAllFacilities`
         );
@@ -67,7 +68,7 @@ export const Facility = () => {
     fetchFacilities();
   }, [render]);
   const user = JSON.parse(sessionStorage.getItem("user")) || undefined;
-  //console.log(user);
+  console.log(user);
 
   return (
     <>
@@ -96,12 +97,9 @@ export const Facility = () => {
           label3="Calendar"
           label4="Facility"
         />
-       
-      )
-      }
+      )}
 
       <div className="flex flex-wrap justify-around w-screen h-screen place-items-center">
-        
         {facilities.length > 0 ? (
           facilities.map((facility, index) => (
             <div className="flex justify-between " key={index}>
@@ -118,7 +116,9 @@ export const Facility = () => {
             </div>
           ))
         ) : (
-          <div className="text-slate-900 text-2xl font-semibold">No facilities available on current day</div>
+          <div className="text-slate-900 text-2xl font-semibold">
+            No facilities available on current day
+          </div>
         )}
       </div>
     </>

@@ -1,5 +1,5 @@
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { LoginBottomWarning } from "../components/LoginBottomWarning";
 import { LoginButton } from "../components/LoginButton";
 import { LoginHeading } from "../components/LoginHeading";
@@ -24,44 +24,41 @@ export const Signin = () => {
       try {
         // console.log("this is all",import.meta.env);
         // console.log("this is us",import.meta.env.VITE_API_URL);
-        const backendapi = import.meta.env.VITE_API_URL || "http://localhost:3000";
-      const response = await fetch(
-        `${backendapi}/api/auth/login`,
-        {
+        const backendapi =
+          import.meta.env.VITE_API_URL || "http://localhost:3000";
+        const response = await fetch(`${backendapi}/api/auth/login`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(requestBody),
-        }
-      );
-      const data = await response.json();
-      if (data.success) {
-        // window.location.href = "/home";
-        // localStorage.setItem("token", data.token);
-        // localStorage.setItem("user", JSON.stringify(data.user));
-        sessionStorage.setItem("token", data.token);
-        sessionStorage.setItem("user", JSON.stringify(data.user));
-
-        toast.success(`Welcome back, ${data.user.firstName}!`, {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          
         });
-        
+        const data = await response.json();
+        if (data.success) {
+          // window.location.href = "/home";
+          // localStorage.setItem("token", data.token);
+          // localStorage.setItem("user", JSON.stringify(data.user));
+          sessionStorage.setItem("token", data.token);
+          sessionStorage.setItem("user", JSON.stringify(data.user));
 
+          toast.success(`Welcome back, ${data.user.firstName}!`, {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          });
 
           setTimeout(() => {
             if (data.user.role === "manager") {
               navigate("/maintenance");
-            } else if (data.user.role === "user" || data.user.role === "admin") {
+            } else if (data.user.role === "user") {
               navigate("/facility");
+            } else if (data.user.role === "admin") {
+              navigate("/admin-booking");
             }
-             window.location.reload();
+            window.location.reload();
           }, 1000);
         } else {
           toast.error("Login failed. Please check your credentials.", {
@@ -83,7 +80,7 @@ export const Signin = () => {
   };
   return (
     <>
-       <ToastContainer />
+      <ToastContainer />
       <div className="bg-slate-950 h-screen pt-20 pl-20 pr-20 flex">
         <div className="flex flex-col w-1/2  ">
           <div className="pt-6 px-9 justify-start">

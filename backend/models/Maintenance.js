@@ -6,11 +6,15 @@ const MaintenanceSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Facility",
     },
+    title:{
+      type: String,
+      required: true,
+    },
     note: {
       type: String,
     },
     MaintenanceDate: {
-      type: Date,
+      type: String,
       required: true,
     },
     MaintenanceStatus: {

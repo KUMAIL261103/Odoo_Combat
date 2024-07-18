@@ -70,3 +70,23 @@ exports.getFacilityByDate = async (req, res) => {
         });
     }
 }
+exports.getFacilityWithMaintainencelogs = async (req, res) => {
+    try {
+        const facility = await Facility.find().populate("MaintenanceId");
+        if (!facility) {
+            return res.status(404).json({
+                success: false,
+                message: "Facility not found",
+            });
+        }
+        res.status(200).json({
+            success: true,
+            facility,
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Server Error",
+        });
+    }
+}

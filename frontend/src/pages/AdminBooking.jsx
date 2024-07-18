@@ -1,90 +1,84 @@
 import { FaCalendarAlt, FaClock, FaUser, FaFootballBall } from 'react-icons/fa';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import AdminNavbar from '../components/AdminNavbar';
 
-const initialBookings = [
-    {
-        id: 1,
-        userName: "John Doe",
-        sportType: "Football",
-        date: "2023-01-01",
-        time: "10:00 AM",
-        status: "Pending"
-    }, {
-        id: 2,
-        userName: "Harkirat",
-        sportType: "Basketball",
-        date: "2023-01-01",
-        time: "10:00 AM",
-        status: "Pending"
-    }, {
-        id: 3,
-        userName: "Khushi",
-        sportType: "Cricket",
-        date: "2023-01-01",
-        time: "10:00 AM",
-        status: "Pending"
-    
 
-    }
-]
 
 
 
 export const AdminBooking = () => {
-    const [bookings, setBookings] = useState(initialBookings);
+    
+    const [bookings, setBookings] = useState([]);
+    useEffect(()=>{
+        const getAllBookings=async()=>{
+            const backendapi = import.meta.env.VITE_API_URL || "http://localhost:3000";
+            await fetch(`${backendapi}/api/bookings/getAllBookings`,
+                {
+                    headers:{
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+                    }
+                }
+            ).then((data)=>data.json()).then((data)=>{console.log(data);setBookings(data.bookings)});
+        }
 
-    const handleApprove = (id) => {
-        setBookings(bookings.map(booking => booking.id===id ? {...booking, status: "Approved"}: booking))
-    }
+        getAllBookings();
+        //console.log(bookings);
+    },[])
+    // const handleApprove = (id) => {
+    //     setBookings(bookings.map(booking => booking.id===id ? {...booking, status: "Approved"}: booking))
+    // }
 
-    const handleDeny = (id) => {
-        setBookings(bookings.map(booking => booking.id===id ? {...booking, status: "Denied"}: booking))
-    }
+    // const handleDeny = (id) => {
+    //     setBookings(bookings.map(booking => booking.id===id ? {...booking, status: "Denied"}: booking))
+    // }
     return <>
     <AdminNavbar/>
-    <div className="min-h-screen bg-slate-950 text-white p-8">
-        <h1 className="text-4xl font-bold mb-8">Booking Requests</h1>
+    <div className="min-h-screen bg-slate-950 text-white p-8 ">
+        <h1 className="text-4xl font-bold mb-8">Booking Logs</h1>
         <div className="overflow-x-auto">
             <table className="min-w-full bg-slate-800 rounded-lg overflow-hidden">
                 <thead className="bg-slate-700">
                     <tr>
-                        <th className="text-left text-xs font-medium text-gray-300 uppercase tracking-wider">User</th>
-                        <th className="text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Sport</th>
-                        <th className="text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Date</th>
-                        <th className="text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Time</th>
-                        <th className="text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Status</th>
-                        <th className="text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Actions</th>
+                        <th className="text-center text-sm font-medium text-gray-300 uppercase tracking-wider ">User</th>
+                        <th className="text-center text-sm font-medium text-gray-300 uppercase tracking-wider">Sport</th>
+                        <th className="text-center text-sm font-medium text-gray-300 uppercase tracking-wider">Date</th>
+                        <th className="text-center text-sm font-medium text-gray-300 uppercase tracking-wider">Time</th>
+                        {/* <th className="text-center text-xs font-medium text-gray-300 uppercase tracking-wider">Status</th>
+                        <th className="text-center text-xs font-medium text-gray-300 uppercase tracking-wider">Actions</th> */}
                     </tr>
                 </thead>
                 <tbody>
-                    {bookings.map((booking) => (
-                        <tr key={booking.id}>
-                            <td className="px-6 py-4 whitespace-nowrap">
-                                <div className="flex items-center">
-                                    <FaUser className="mr-2 text-light-green" />
-                                    {booking.userName}
+                    {bookings.length>0 && bookings.map((booking,index) => (
+                        
+                        <tr key={index}>
+                            <td className="px-6 py-4 whitespace-nowrap  ">
+                                <div className="flex items-center justify-center gap-4 ">
+                                    <FaUser className=" text-light-green text-center " />
+                                    <p>{booking.userId.firstName}</p>
+                                    {booking.userId.lastName}
                                 </div>
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap">
-                                <div className="flex items-center">
+                            <td className="px-6 py-4 whitespace-nowrap text-center">
+                                <div className="flex items-center justify-center gap-4 ">
                                     <FaFootballBall className="mr-2 text-light-green" />
-                                    {booking.sportType}
+                                    {booking.facilityId.name}
                                 </div>
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap">
-                                <div className="flex items-center">
+                            <td className="px-6 py-4 whitespace-nowrap text-center">
+                                <div className="flex items-center justify-center gap-4 ">
                                     <FaCalendarAlt className="mr-2 text-light-green" />
-                                    {booking.date}
+                                    {booking.bookingDate}
                                 </div>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap">
-                                <div className="flex items-center">
+                                <div className="flex items-center justify-center gap-4 ">
                                     <FaClock className="mr-2 text-light-green" />
-                                    {booking.time}
+                                    {booking.createdAt}
                                 </div>
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap">
+
+                            {/* <td className="px-6 py-4 whitespace-nowrap">
                   <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
                     booking.status === 'Approved' ? 'bg-green-100 text-green-800' :
                     booking.status === 'Denied' ? 'bg-red-100 text-red-800' :
@@ -92,8 +86,8 @@ export const AdminBooking = () => {
                   }`}>
                     {booking.status}
                   </span>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                </td> */}
+                {/* <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                   {booking.status === 'Pending' && (
                     <>
                       <button
@@ -110,12 +104,14 @@ export const AdminBooking = () => {
                       </button>
                     </>
                   )}
-                </td>
+                </td> */}
 
                             
 
                         </tr>
+                      
                     ))}
+                   
                 </tbody>
 
             </table>

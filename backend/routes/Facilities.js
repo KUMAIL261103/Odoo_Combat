@@ -14,5 +14,5 @@ router.get("/getAllFacilities", getAllFacilities);
 router.get("/getFacility/:id", auth, getFacility);
 router.post("/createFacility", auth, isAdmin, createFacility);
 router.get("/getFacilityByDate/:currDate", auth, getFacilityByDate);
-router.get("/getFacilityWithMaintainencelogs",auth,isManager,getFacilityWithMaintainencelogs);
+router.get("/getFacilityWithMaintainencelogs",auth,isManager,isAdmin,getFacilityWithMaintainencelogs);
 module.exports = router;

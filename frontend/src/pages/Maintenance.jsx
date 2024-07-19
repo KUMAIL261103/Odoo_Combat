@@ -54,7 +54,7 @@ export const Maintenance = () => {
               <img src={`${facility.image}`} alt="img" className="rounded-full object-cover w-[50px] h-[50px]"></img>
               <h1 className="text-2xl font-bold text-center ">{facility.name}</h1>
               <div>
-              <button className="bg-light-green text-black py-2 px-4 rounded mx-2"
+              <button className={`bg-light-green text-black py-2 px-4 rounded mx-2 ${user.role==="manager"?"visible":"hidden"}`}
               onClick={()=>{ setSelectedFacility(facility);setModal(true);}}>
               Create</button>
               <button className= {`bg-light-green text-black py-2 px-4 rounded mx-2 `}

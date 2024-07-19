@@ -4,12 +4,13 @@ import { Signup } from "./pages/Signup";
 import { Signin } from "./pages/Signin";
 import { Facility } from "./pages/Facility";
 import { Maintenance } from "./pages/Maintenance";
-import MaintenanceLog from "./pages/MaintenanceLog";
+// import MaintenanceLog from "./pages/MaintenanceLog";
 import { ChakraProvider } from "@chakra-ui/react";
 import CalenderPage from "./pages/Calender";
 import { Bookings } from "./pages/Bookings";
 import { AdminBooking } from "./pages/AdminBooking";
 import NotFound from "./components/Notfound";
+import CreateFacility from "./pages/CreateFacility";
 function App() {
   // const token = localStorage.getItem("token") || sessionStorage.getItem("token");
   const user = JSON.parse(sessionStorage.getItem("user")) || undefined;
@@ -31,28 +32,32 @@ function App() {
               </>
             ) : (
               <>
-                <Route path="/facility" element={<Facility />} />
+                <Route path="/facility" element={<Signin />} />
+                <Route path="/calender" element={<Signin />} />
+                <Route path="/booking" element={<Signin />} />
+
               </>
             )}
             {user?.role == "manager" || user?.role == "admin" ? (
               <>
                 <Route path="/maintenance" element={<Maintenance />} />
-                <Route path="/maintenance-log" element={<MaintenanceLog />} />
+                {/* <Route path="/maintenance-log" element={<MaintenanceLog />} /> */}
               </>
             ) : (
               <>
                 <Route path="/maintenance" element={<Signin />} />
-                <Route path="/maintenance-log" element={<Signin />} />
+                {/* <Route path="/maintenance-log" element={<Signin />} /> */}
               </>
             )}
             {user?.role == "admin" ? (
               <>
                 <Route path="/admin-booking" element={<AdminBooking />} />
-                <Route path="/facility" element={<Facility />} />
+                <Route path="/create-facility" element={<CreateFacility />} />
               </>
             ) : (
               <>
                 <Route path="/admin-booking" element={<Signin />} />
+                <Route path="/create-facility" element={<Signin />}  />
               </>
             )}
             <Route path="*" element={<NotFound />} />

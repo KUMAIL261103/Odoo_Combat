@@ -36,8 +36,8 @@ exports.getFacility = async (req, res) => {
 //create facility(for admin)
 exports.createFacility = async (req, res) => {
     try {
-        const { name, location, amount,image } = req.body;
-        const facility = await Facility.create({name, location, amount,image});
+        const { name, location, amount,image,amenities } = req.body;
+        const facility = await Facility.create({name, location, amount,image,amenities});
         res.status(201).json({
             success: true,
             facility,

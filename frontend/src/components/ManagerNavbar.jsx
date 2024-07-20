@@ -38,7 +38,7 @@ export default function MangerNavbar() {
               </div>
               
               {dropdownOpen && (
-                <div className="absolute right-0 mt-2 w-40 bg-slate-800 rounded-md shadow-lg overflow-hidden">
+                <div className="absolute right-0 z-10 mt-2 w-40 bg-slate-800 rounded-md shadow-lg overflow-hidden">
                   <button 
                     className="w-full text-left px-4 py-3 text-white hover:bg-slate-700 transition-colors duration-200 flex items-center gap-2"
                     onClick={() => logout()}

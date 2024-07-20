@@ -53,9 +53,9 @@ export default function UserNavbar({ label1, label2, label3, label4 }) {
                 </div>
                 
                 {dropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-40 bg-slate-800 rounded-md shadow-lg overflow-hidden">
+                  <div className="absolute right-0 mt-2 w-40 z-10 bg-slate-800 rounded-md shadow-lg overflow-hidden">
                     <button 
-                      className="w-full text-left px-4 py-3 text-white hover:bg-slate-700 transition-colors duration-200 flex items-center gap-2"
+                      className="w-full text-left px-4 py-3  text-white hover:bg-slate-700 transition-colors duration-200 flex items-center gap-2"
                       onClick={() => logout()}
                     >
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

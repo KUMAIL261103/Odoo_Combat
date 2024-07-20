@@ -36,15 +36,18 @@ exports.getFacility = async (req, res) => {
 //create facility(for admin)
 exports.createFacility = async (req, res) => {
     try {
-        const { name, location, amount,image,amenities } = req.body;
-        const facility = await Facility.create({name, location, amount,image,amenities});
+        const { name, location, price,image,amenities } = req.body;
+        console.log("this is data-->",req.body);
+        const newfacility = await Facility.create({name, location, amount:price,image,amenities});
         res.status(201).json({
             success: true,
-            facility,
+            newfacility,
         });
     } catch (error) {
+        console.log(error);
         res.status(500).json({
             success: false,
+            error: error.message,
             message: "Server Error",
         });
     }

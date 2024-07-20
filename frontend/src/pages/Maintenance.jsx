@@ -28,7 +28,7 @@ export const Maintenance = () => {
           .then((data)=>{console.log(data.facility);setFacility(data.facility )})
           }
           fetchdata();
-        },[selectedFacility])
+        },[modal])
       const [togglelogs, setTogglelogs] = useState([]);
       //console.log(togglelogs);
       //console.log(selectedFacility._id);

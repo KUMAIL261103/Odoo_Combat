@@ -59,10 +59,10 @@ exports.isUser = async (req, res, next) => {
 };
 exports.isNotUser = async (req, res, next) => {
   try {
-    if (req.user.role !== "manager" || req.user.role !== "admin") {
+    if (req.user.role !== "manager" && req.user.role !== "admin") {
       return res.status(401).json({
         success: false,
-        message: "This is a protected route for user only",
+        message: "This is a protected route not for user",
       });
     }
     next();

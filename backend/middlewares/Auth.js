@@ -57,6 +57,22 @@ exports.isUser = async (req, res, next) => {
     });
   }
 };
+exports.isNotUser = async (req, res, next) => {
+  try {
+    if (req.user.role !== "manager" || req.user.role !== "admin") {
+      return res.status(401).json({
+        success: false,
+        message: "This is a protected route for user only",
+      });
+    }
+    next();
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "User role cannot be verified",
+    });
+  }
+};
 
 //isManager
 exports.isManager = async (req, res, next) => {

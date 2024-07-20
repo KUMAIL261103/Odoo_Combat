@@ -149,7 +149,7 @@ export const Maintenance = () => {
                   <div className="text-white">Brief : {maintenance.note}</div>
                     <button  className={`
                         ${maintenance.MaintenanceStatus === "Done" ? "bg-light-green" : "bg-red-400"}
-                        ${user.role === "admin" ? "cursor-not-allowed opacity-50" : "cursor-pointer"}
+                        ${user.role === "admin" ? "cursor-not-allowed " : "cursor-pointer"}
                         text-black py-2 px-4 rounded mx-2
                         ${user.role === "admin" ? "pointer-events-none" : "pointer-events-auto"}
                       `}

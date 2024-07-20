@@ -4,6 +4,7 @@ import { useState } from "react";
 
 export default function AdminNavbar() {
   const user = JSON.parse(sessionStorage.getItem("user")) || undefined;
+  // console.log(user);
   const logout = () => {
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("user");
@@ -29,11 +30,15 @@ export default function AdminNavbar() {
             <a href="/maintenance" className="text-[1.5vw] text-white hover:text-gray-400">
               Maintenance
             </a>
+            <a href="/create-facility" className="text-[1.5vw] text-white hover:text-gray-400">
+              Create Facility
+            </a>
           </div>
           <div className="text-[1.3vw] flex items-center text-white">
           {user ? (
               <div className="relative">
               <div className="flex items-center gap-2 cursor-pointer" onClick={() => setDropdownOpen(!dropdownOpen)}>
+                {/* <img src={user.image} alt="image" /> */}
                 <span className="text-white font-medium">Welcome, {user.firstName}</span>
                 <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />

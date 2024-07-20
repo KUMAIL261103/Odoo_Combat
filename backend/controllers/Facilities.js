@@ -36,9 +36,33 @@ exports.getFacility = async (req, res) => {
 //create facility(for admin)
 exports.createFacility = async (req, res) => {
     try {
-        const { name, location, amount,image } = req.body;
-        const facility = await Facility.create({name, location, amount,image});
+        const { name, location, price,image,amenities } = req.body;
+        console.log("this is data-->",req.body);
+        const newfacility = await Facility.create({name, location, amount:price,image,amenities});
         res.status(201).json({
+            success: true,
+            newfacility,
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            success: false,
+            error: error.message,
+            message: "Server Error",
+        });
+    }
+}
+exports.getFacilityByDate = async (req, res) => {
+    try {
+        console.log("this is  data-->",req.params.currDate);
+       const facility = await Facility.find({ isUsedDate: { $ne: req.params.currDate } });
+        if (!facility) {
+            return res.status(404).json({
+                success: false,
+                message: "Facility not found",
+            });
+        }
+        res.status(200).json({
             success: true,
             facility,
         });
@@ -49,10 +73,9 @@ exports.createFacility = async (req, res) => {
         });
     }
 }
-exports.getFacilityByDate = async (req, res) => {
+exports.getFacilityWithMaintainencelogs = async (req, res) => {
     try {
-        console.log("this is  data-->",req.params.currDate);
-       const facility = await Facility.find({ isUsedDate: { $ne: req.params.currDate } });
+        const facility = await Facility.find().populate("MaintenanceId");
         if (!facility) {
             return res.status(404).json({
                 success: false,

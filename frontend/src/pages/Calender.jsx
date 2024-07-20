@@ -29,7 +29,7 @@ const CalendarPage = () => {
         },
       })
       .then((res) => res.json())
-      .then((data) => setAvailableSports(data.facility))
+      .then((data) => setAvailableSports(data.availableFacilitywithoutMaintenance))
       .catch((err) => console.log(err));
     };
     getAllAvailableSportsOnCurrDate(date);

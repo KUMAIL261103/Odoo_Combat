@@ -1,7 +1,7 @@
 const Facility = require("../models/Facilities");
 exports.getAllFacilities = async (req, res) => {
     try {
-        const facilities = await Facility.find();
+        const facilities = await Facility.find().populate("MaintenanceId");
         res.status(200).json({
             success: true,
             facilities,
@@ -55,8 +55,16 @@ exports.createFacility = async (req, res) => {
 exports.getFacilityByDate = async (req, res) => {
     try {
         console.log("this is  data-->",req.params.currDate);
-       const facility = await Facility.find({ isUsedDate: { $ne: req.params.currDate } });
-        if (!facility) {
+    const notusedfacility = await Facility.find({ isUsedDate: { $ne: req.params.currDate } }).populate("MaintenanceId");
+    console.log("this is not used facility-->", notusedfacility);
+    const availableFacilitywithoutMaintenance = notusedfacility.filter((facility) => {
+        return facility.MaintenanceId.length === 0 || facility.MaintenanceId.every((maintenance) => maintenance.MaintenanceDate !== req.params.currDate);
+    });
+
+//console.log("Available facilities without maintenance on the given date:", availableFacilitywithoutMaintenance);
+
+
+        if (!availableFacilitywithoutMaintenance) {
             return res.status(404).json({
                 success: false,
                 message: "Facility not found",
@@ -64,7 +72,7 @@ exports.getFacilityByDate = async (req, res) => {
         }
         res.status(200).json({
             success: true,
-            facility,
+            availableFacilitywithoutMaintenance,
         });
     } catch (error) {
         res.status(500).json({

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 import FacilityCard from "../components/FacilityCard";
 import UserNavbar from "../components/UserNavbar";
 import LandingNavbar from "../components/LandingNavbar";
@@ -20,30 +20,45 @@ import AdminNavbar from "../components/AdminNavbar";
 //   }
 //   return false;
 // }
-const isUsedDateCheck = (isUsedDate) => {
-  if (isUsedDate.length === 0) return false;
+// const isUsedDateCheck = (isUsedDate) => {
+//   if (isUsedDate.length === 0) return false;
 
-  const year = new Date().getFullYear();
-  const month = String(new Date().getMonth() + 1).padStart(2, "0");
-  const day = String(new Date().getDate()).padStart(2, "0");
-  const currentDate = `${year}-${month}-${day}`;
+//   const year = new Date().getFullYear();
+//   const month = String(new Date().getMonth() + 1).padStart(2, "0");
+//   const day = String(new Date().getDate()).padStart(2, "0");
+//   const currentDate = `${year}-${month}-${day}`;
 
-  for (let i = 0; i < isUsedDate.length; i++) {
-    if (currentDate === isUsedDate[i]) {
-      return true;
-    }
-  }
-  return false;
-};
-const isAvailable = (facilities) => {
-  const availableFacilities = [];
-  for (let i = 0; i < facilities.length; i++) {
-    if (isUsedDateCheck(facilities[i].isUsedDate) == false) {
-      availableFacilities.push(facilities[i]);
-    }
-  }
-  return availableFacilities;
-};
+//   for (let i = 0; i < isUsedDate.length; i++) {
+//     if (currentDate === isUsedDate[i]) {
+//       return true;
+//     }
+//   }
+//   return false;
+// };
+// const isOnMaintenanceCheck = (isOnMaintenance) => {
+//   if (isOnMaintenance.length === 0) return false;
+
+//   const year = new Date().getFullYear();
+//   const month = String(new Date().getMonth() + 1).padStart(2, "0");
+//   const day = String(new Date().getDate()).padStart(2, "0");
+//   const currentDate = `${year}-${month}-${day}`;
+
+//   for (let i = 0; i < isOnMaintenance.length; i++) {
+//     if (currentDate === isOnMaintenance[i].MaintenanceDate) {
+//       return true;
+//     }
+//   }
+//   return false;
+// };
+// const isAvailable = (facilities) => {
+//   const availableFacilities = [];
+//   for (let i = 0; i < facilities.length; i++) {
+//     if (isUsedDateCheck(facilities[i].isUsedDate) == false && isOnMaintenanceCheck(facilities[i].MaintenanceId) == false){
+//       availableFacilities.push(facilities[i]);
+//     }
+//   }
+//   return availableFacilities;
+// };
 export const Facility = () => {
   const [facilities, setFacilities] = useState([]);
   const [render, setRender] = useState(false);
@@ -51,15 +66,26 @@ export const Facility = () => {
     const fetchFacilities = async () => {
       try {
         const backendUrl =
-          import.meta.env.VITE_API_URL || "http://localhost:3000";
+            import.meta.env.VITE_API_URL || "http://localhost:3000";
         //console.log(backendUrl);
-
-        const response = await axios.get(
-          `${backendUrl}/api/facilities/getAllFacilities`
-        );
-        const availableFacilities = isAvailable(response.data.facilities);
+        const year = new Date().getFullYear();
+  const month = String(new Date().getMonth() + 1).padStart(2, "0");
+  const day = String(new Date().getDate()).padStart(2, "0");
+  const currDate = `${year}-${month}-${day}`;
+         await fetch(
+          `${backendUrl}/api/facilities/getFacilityByDate/${currDate}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+            },
+          }
+        ).then((res) => res.json()).then((data)=>setFacilities(data.availableFacilitywithoutMaintenance)).catch((err) => console.log(err));
+        // const availableFacilities = isAvailable(response.data.facilities);
         //console.log(response.data.facilities);
-        setFacilities(availableFacilities);
+        // console.log(response.availableFacilitywithoutMaintenance);
+        // setFacilities(response.availableFacilitywithoutMaintenance);
       } catch (error) {
         console.error("Error fetching facilities:", error);
       }

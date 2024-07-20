@@ -6,7 +6,8 @@ const {
     getBookingByUserId,
     getBookingByFacilityId,
     createBooking,
-    approveBooking
+    approveBooking,
+    validateBooking
 }= require("../controllers/Booking");
 
 
@@ -18,6 +19,8 @@ router.get("/getBookingByUserId",auth,isUser, getBookingByUserId)
 router.get("/getBookingByFacilityId",auth,isAdmin,getBookingByFacilityId);
 
 router.post("/createBooking",auth,isUser, createBooking);
+
+router.post("/validateBooking",auth,isUser,validateBooking);
 
 router.post("/approveBooking",auth,isAdmin,approveBooking);
 

@@ -31,8 +31,7 @@ const UserSchema = new mongoose.Schema(
       ref: "Booking",
     }],
     paymentId: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Payment",
+      type:String,
     }],
 
     token: {

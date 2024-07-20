@@ -16,6 +16,11 @@ const bookingSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    paymentId:{
+      type:String,
+      required:true
+    },
+    
     // bookingStatus: {
     //   type: String,
     //   enum: ["Aprooved", "Pending", "Rejected"],

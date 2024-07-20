@@ -8,16 +8,19 @@ const ConformationalModal = ({
   date,
   closeModal,
   rerender,
+  
 }) => {
     console.log(FacilityId,heading,price,location,date);
   const user = JSON.parse(sessionStorage.getItem("user")) || undefined;
 //   console.log("this iss user datra", user);
   const token = sessionStorage.getItem("token") || undefined;
   // console.log("this is token",token);
-  const bookFacility = async (FacilityId, userId, date) => {
+  const bookFacility = async (FacilityId, userId, date,event) => {
+    event.preventDefault();
     
-    const backendUrl = import.meta.env.VITE_API_URL || "http://localhost:3000";
-    const confirmbooking = await fetch(
+    let createbookingdata ;
+    const backendUrl =  import.meta.env.VITE_API_URL || "http://localhost:3000";
+     await fetch(
       `${backendUrl}/api/bookings/createBooking`,
       {
         method: "POST",
@@ -26,17 +29,72 @@ const ConformationalModal = ({
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          userId: user._id,
           facilityId: FacilityId,
-          date,
         }),
       }
-    )
-      .then((res) => res.json())
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err));
-    console.log(confirmbooking);
-
+    ).then((data) => data.json())
+    .then((data)=>{console.log(data);createbookingdata=data})
+    .catch((err) => console.log(err));
+    console.log("this is createbookingdata",createbookingdata);
+    let order = createbookingdata.order;
+    console.log("this is order",order);
+     var options = {
+      key: import.meta.env.VITE_RAZORPAY_KEY_ID, // Enter the Key ID generated from the Dashboard
+      amount:price*100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+      currency:"INR",
+      name: "Sportspace", //your business name
+      description: "Test Transaction",
+      image: "https://example.com/your_logo",
+      order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+      handler: async function (response) {
+        console.log(response);
+        const body = {
+          razorpay_order_id:response.razorpay_order_id,
+          razorpay_payment_id:response.razorpay_payment_id,
+          razorpay_signature:response.razorpay_signature,
+          userId,
+          facilityId: FacilityId,
+          date
+        };
+         const validateRes = await fetch(
+          `${backendUrl}/api/bookings/validateBooking`,
+          {
+            method: "POST",
+            body: JSON.stringify(body),
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${token}`,
+            },
+          }
+        );
+        const jsonRes = await validateRes.json();
+        console.log(jsonRes);
+      },
+      prefill: {
+        //We recommend using the prefill parameter to auto-fill customer's contact information, especially their phone number
+        name: user.firstName, //your customer's name
+        email: user.email,
+        contact: "9000000", //Provide the customer's phone number for better conversion rates
+      },
+      notes: {
+        address: "Razorpay Corporate Office",
+      },
+      theme: {
+        color: "#3399cc",
+      },
+    };
+    var rzp1 = new window.Razorpay(options);
+    rzp1.on("payment.failed", function (response) {
+      alert(response.error.code);
+      alert(response.error.description);
+      alert(response.error.source);
+      alert(response.error.step);
+      alert(response.error.reason);
+      alert(response.error.metadata.order_id);
+      alert(response.error.metadata.payment_id);
+    });
+    rzp1.open();
+    
     closeModal();
     rerender((prev) => !prev);
   };
@@ -56,7 +114,7 @@ const ConformationalModal = ({
         </div>
         <div className="flex items-center justify-center gap-4 mt-6">
           <button
-            onClick={() => bookFacility(FacilityId, user?._id, date)}
+            onClick={(event) => bookFacility(FacilityId, user?._id, date,event)}
             className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 -ml-7 rounded-lg transition duration-300 flex items-center"
           >
             <svg

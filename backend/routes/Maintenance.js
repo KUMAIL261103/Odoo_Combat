@@ -17,7 +17,7 @@ router.get("/getAllMaintenanceLogByFacilityId",auth,isManager, getAllMaintenance
 
 router.post("/scheduleMaintenance",auth,isManager,scheduleMaintenance);
 
-router.post("/updateMaintenance",auth,isManager, updateMaintenance);
+router.put("/updateMaintenance/:id",auth,isManager, updateMaintenance);
 
 
 

@@ -14,6 +14,7 @@ export const Maintenance = () => {
   const [facility, setFacility] = useState([]);
   const [modal, setModal] = useState(false);
   const [selectedFacility, setSelectedFacility] = useState({});
+  const [reload,setreload]=useState(false);
   useEffect(() => {
     const fetchdata = async () => {
       const backendapi =
@@ -34,7 +35,24 @@ export const Maintenance = () => {
         });
     };
     fetchdata();
-  }, [modal]);
+  }, [modal,reload]);
+  const ChangeStatus = async (id,status) => {
+    const backendapi =
+       import.meta.env.VITE_API_URL || "http://localhost:3000";
+    await fetch(`${backendapi}/api/Maintenances/updateMaintenance/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+      body: JSON.stringify({Status:status=="Done"?"Pending":"Done"}),
+    })
+      .then((data) => data.json())
+      .then((data) => {
+        console.log(data);
+        setreload((prev)=>!prev);
+        });
+      }
   const [togglelogs, setTogglelogs] = useState([]);
   //console.log(togglelogs);
   //console.log(selectedFacility._id);
@@ -129,6 +147,15 @@ export const Maintenance = () => {
                     Scheduled Date : {maintenance.MaintenanceDate}
                   </div>
                   <div className="text-white">Brief : {maintenance.note}</div>
+                    <button  className={`
+                        ${maintenance.MaintenanceStatus === "Done" ? "bg-light-green" : "bg-red-400"}
+                        ${user.role === "admin" ? "cursor-not-allowed opacity-50" : "cursor-pointer"}
+                        text-black py-2 px-4 rounded mx-2
+                        ${user.role === "admin" ? "pointer-events-none" : "pointer-events-auto"}
+                      `}
+                      onClick={() => user.role !== "admin" && ChangeStatus(maintenance._id, maintenance.MaintenanceStatus)}
+                      disabled={user.role === "admin"}
+                  >{maintenance.MaintenanceStatus}</button>
                 </div>
               ))}
             </div>

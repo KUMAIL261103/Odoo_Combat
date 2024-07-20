@@ -91,23 +91,14 @@ exports.scheduleMaintenance = async (req, res) => {
 //update Maintenance log
 exports.updateMaintenance = async (req, res) => {
     try {
-       if(!req.params.facilityId || !req.body){
-            return res.status(400).json({
-                success: false,
-                message: "Facility Id is required",
-            });
-       }
-       const {isdone} =req.body;
-        const Maintenance = await Maintenance.findOneAndUpdate({ facilityId: req.params.facilityId }, {MaintenanceStatus:isdone}, { new: true });
-        if (!Maintenance) {
-            return res.status(404).json({
-                success: false,
-                message: "Maintenance log not found",
-            });
-        }
+        const id = req.params.id;
+        console.log(id);
+        const { Status } = req.body;
+        console.log(req.body);
+        const updateMaintenance = await Maintenance.findByIdAndUpdate(id, { MaintenanceStatus:Status }, { new: true });
         res.status(200).json({
             success: true,
-            Maintenance,
+            updateMaintenance,
         });
     } catch (error) {
         res.status(500).json({

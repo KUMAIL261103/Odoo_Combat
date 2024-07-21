@@ -33,18 +33,13 @@
 - Online payments through Stripe for facility bookings.
 - Payment tracking to monitor payment statuses and history for each booking.
 
-### Data Display with Filter, Sort, and Pagination
-- Filter facilities based on different criteria.
-- Sort facilities by name, location, amount, etc.
-- Pagination to handle large lists of facilities efficiently.
 
 ## Tech Stack
 
 - **Backend:** Node.js, Express.js
 - **Database:** MongoDB
-- **Frontend:** React.js (or your preferred frontend framework)
-- **Payment Gateway:** Stripe
-- **Authentication:** JWT, Passport.js
+- **Frontend:** React.js
+- **Payment Gateway:** Razorpay
 - **Other:** Mongoose for MongoDB interactions
 
 ## Installation

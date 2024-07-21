@@ -48,4 +48,4 @@
 
 - Node.js and npm installed
 - MongoDB installed and running
-- Stripe account for payment processing
+- Razorpay account for payment processing

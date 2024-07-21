@@ -28,16 +28,16 @@ export default function UserNavbar({ label1, label2, label3, label4 }) {
           </div>
           {/* Navigation Links */}
           <div className="flex gap-4 max-md:gap-1  max-md:flex-col ">
-            <a href={"/home"} className="text-2xl text-white hover:text-gray-400 max-sm:text-base">
+            <a href={"/home"} className="text-xl text-white hover:text-gray-400 max-sm:text-base">
               {label1}
             </a>
-            <a href={"/booking"} className="text-2xl text-white hover:text-gray-400 max-sm:text-base">
+            <a href={"/booking"} className="text-xl text-white hover:text-gray-400 max-sm:text-base">
               {label2}
             </a>
-            <a href={"/calender"} className="text-2xl text-white hover:text-gray-400 max-sm:text-base">
+            <a href={"/calender"} className="text-xl text-white hover:text-gray-400 max-sm:text-base">
               {label3}
             </a>
-            <a href={"/facility"} className="text-2xl text-white hover:text-gray-400 max-sm:text-base">
+            <a href={"/facility"} className="text-xl text-white hover:text-gray-400 max-sm:text-base">
               {label4}
             </a>
           </div>
@@ -46,7 +46,7 @@ export default function UserNavbar({ label1, label2, label3, label4 }) {
           {user ? (
                 <div className="relative">
                 <div className="flex items-center gap-2 cursor-pointer" onClick={() => setDropdownOpen(!dropdownOpen)}>
-                  <span className="text-white text-2xl max-sm:text-base">Welcome, {user.firstName}</span>
+                  <span className="text-white text-xl max-sm:text-base">Welcome, {user.firstName}</span>
                   <svg className="w-4 h-4 text-white text-2xl max-sm:text-base" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>

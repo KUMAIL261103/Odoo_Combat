@@ -5,11 +5,11 @@ export function LoginInputBox({ placeholder, icon, value, onChange }) {
     <div className="mt-5">
       {" "}
       {/* Add mt-4 class for margin-top */}
-      <div className="flex justify-start h-10 border rounded-md border-slate-600 pl-4">
-        <div className="py-3">{icon}</div>
+      <div className="flex items-center border border-gray-600 rounded-md px-3 py-2 hover:border-gray-400 focus-within:border-gray-400 w-full">
+        <div className="mr-3 text-white">{icon}</div>
         <input
           placeholder={placeholder}
-          className="pl-3 active:border-0 focus:text-white text-white    bg-slate-950 w-full"
+          className="bg-transparent outline-none text-white w-full"
           onChange={(e) => {
             onChange(e.target.value);
           }}

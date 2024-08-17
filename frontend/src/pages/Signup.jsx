@@ -80,9 +80,9 @@ signupdata();
   return (
     <>
     <ToastContainer />
-      <div className="bg-slate-950 flex h-screen pt-16 pl-20 pr-20   ">
-        <div className="flex flex-col w-1/2">
-          <div className=" px-9 justify-start">
+      <div className="bg-slate-950 flex flex-col lg:flex-row h-screen pt-16 lg:pl-20 lg:pr-20 p-4 md:items-center">
+        <div className="flex flex-col w-full lg:w-1/2">
+          <div className="px-9 justify-start">
             <LoginHeading label={"Sign up"} />
             <LoginSubHeading label={"Welcome"} />
 
@@ -131,12 +131,12 @@ signupdata();
             </div>
           </div>
         </div>
-        <div className=" flex flex-col m-auto justify-center">
+        <div className="hidden lg:flex lg:w-1/2 justify-center items-center">
           {" "}
           <img
             src={signinPageImg}
             alt="Landing Page"
-            className="  object-cover h-[80vh] w-[60vh] pb-10"
+            className="object-cover max-h-[80vh] max-w-[60vh]"
           />
         </div>
       </div>
